@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+
+<head> 
+	<title>CodeNinja Adventure Game</title>
+</head>
+
+<body>
+
+<script>
+
+// Begin Game
+
+window.alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
+window.alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
+			+ " young CodeNinja. As the story progresses, you will be provided with various scenarios. "
+			+ "As each scenario presents itself, you will be provided with a few possible alternative actions. "
+			+ "Each time you are prompted for an action, you can perform one of the following tasks: \n\n"
+			+ "1. Respond to the current scenario by selecting the appropriate action \n\n"
+			+ "2. See the current status of your character by pressing the letter 's' \n\n"
+			+ "3. Exit the game by pressing the letter 'e' \n\n"
+			+ "Hope you enjoy!"
+		);
+
+var name = prompt("What would you like our young CodeNinja to be named?");
+		
+// Setting the scene
+window.alert("As our story begins, we find our young hero " + name + " as he begins his weekly journey "
+			+ "to see the wise & powerful Grand Ninja. \n\nToday appears to be like any other day as " + name + " sets out on a 5 "
+			+ "mile hike through the Miramar forest across the great land of Oz. What our unsuspecting character " + name + " does not realize though, "
+			+ "is that the forest has just been overrun with dark & dangerous creatures. \n\n"
+			+ "With nothing but a sword in hand and 200 Gold pieces, we join " + name + " for a CodeNinja adventure!"
+	);
+
+confirm("The game is starting now!");
+
+// declare our hero & enemies and set initial attributes
+
+var codeNinja = new Object();
+codeNinja.hero = {
+	name: name,
+	health: 3,
+	hitMultiplier: 2,
+	gold: 200
+};
+
+// create all badGuy objects to be called throughout the game
+// reward is an array in the format of [gold, hearts, beer] health & beer can have a postive or negative consequence
+var badGuy = new Object();
+badGuy.one = {
+	name: "Bad Guy 1",
+	health: 2,
+	hitMultiplier: 2,
+	reward: [200, .5, 1]
+};
+badGuy.two = {
+	name: "Bad Guy 2",
+	health: 3,
+	hitMultiplier: 1.5,
+	reward: [250, 1, -1]
+};
+badGuy.three = {
+	name: "Bad Guy 3",
+	health: 2,
+	hitMultiplier: 3,
+	reward: [500, 1.5, -2]
+};
+badGuy.four = {
+	
+	name: "Bad Guy 4",
+	health: 4,
+	hitMultiplier: 2,
+	reward: [1000, 2, 1]
+};
+badGuy.mainBoss = {
+	name: "Main Boss",
+	health: 6,
+	hitMultiplier: 4,
+	reward: [5000, ]
+};
+
+/*var options = function(check) {          // not sure if i'll use this yet
+	if (option === 's') {
+		document.write("Display Character attributes");
+	};
+	else if (option === 'e'){
+		document.write("Thanks for playing");
+		// figure out how to exit program here
+	};
+	else {
+		break;
+	};
+}; */
+
+/* var fightOrFlee = function() {
+	var option = 4;
+	while (option != 1 || 2 || 3) {
+		option = prompt("What would you like to do? \n\n"
+						+ "Press 1 to Fight \n"
+						+ "Press 2 to try to sneak around \n"
+						+ "Press 3 to try to bribe him \n"
+						+ "Press 's' to check your current health and status \n"
+						+ "Press 'e' to exit the game");  //see if you can enter bad guys name here
+						window.alert("Invalid option. Please select a valid choice")
+				};
+	while (option != 1 || 2 || 3) {
+						if (option === 1 || 2 || 3) {
+							return option;
+						};
+						else if (option === 's') {
+							window.alert("You have 3.5/5 hearts, 200 golf");
+						}
+					}
+};
+
+var battle =  function() {
+};*/
+
+</script>
+
+</body>
+
+</html>

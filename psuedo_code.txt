@@ -1,0 +1,41 @@
+Approach bad guy > present options (Fight, Sneak Around, Bribe)
+	If fight
+		while (hero || badGuy != 0 
+		present options (Attack, Heal, Flee)
+			if attack
+				your hit power vs opponent hit power
+					if hitpower > opponent
+						subtract from opponent life
+							if (badGuy <= 0)
+								declare opponent dead
+								receive add-ons
+							else
+								loop back
+			   		if hitpower < opponent
+						subtract from hero life
+							if (hero <= 0)
+								declare hero dead
+								present option to buy new life
+							else 
+								loop back
+					if hitpower = opponent
+						no damage done to either opponent loop back
+	
+	Else If Sneak Around
+		random options for result
+	
+	Else If Bribe
+		random number of gold
+		if yes - advance
+		else - loop back to options
+
+	Else If Status
+		display character status
+		loop back to options
+
+	Else If Exit
+		thanks for playing
+		end game
+
+	Else 
+		bad choice;		   
