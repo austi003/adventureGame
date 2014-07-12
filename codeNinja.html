@@ -11,7 +11,7 @@
 <script>
 
 // Begin Game
-
+/*
 window.alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
 window.alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
 			+ " young CodeNinja. As the story progresses, you will be provided with various scenarios. "
@@ -33,7 +33,8 @@ window.alert("As our story begins, we find our young hero " + name + " as he beg
 			+ "With nothing but a sword in hand and 200 Gold pieces, we join " + name + " for a CodeNinja adventure!"
 	);
 
-confirm("The game is starting now!");
+confirm("The game is starting now!"); */
+
 /*
 // declare our hero & enemies and set initial attributes
 
@@ -81,15 +82,55 @@ badGuy.mainBoss = {
 };
 */
 
-//Create all scenarious for the game in an array to be called
-var scenario = ["Scenario 1", "Scenario 2", "Scenario 3", "Scenario 4"];
-
-for (var i=0; i < scenario.length; i++) {
-	document.write(scenario[i]);
+var scenario = 0;
+//simple function to create the number of scenarios
+howManyScenarios = function(number) {
+	scenario = new Array(number);
+	for (j=0; j < scenario.length; j++) {
+		scenario[j] = ("Scenario " + (1 + j));
+	};
 };
 
+howManyScenarios(4);
 
+for (i=0; i < scenario.length; i++) {
+	// Build out scenarios as objects with a switch case
+	switch(scenario[i]) {
+		case 'Scenario 1':
+			window.alert("You run into a troll");
+			break;
+		case 'Scenario 2': 
+			window.alert("You run into a ogre");
+			break;
+		case 'Scenario 3':
+			window.alert("You run into a warewolf");
+			break;
+		case 'Scenario 4':
+			window.alert("You run into a wizard");
+			break;
+	};
+};
 
+// prompt to be presented to user each time confronted by a bad guy
+var encounter = "In the heat of the moment, what do you do? Fight him? Bribe him? Or run?"
+/*
+	var choice = prompt(encounter).toUpperCase();
+	
+	switch(choice) {
+		case 'FIGHT':
+			document.write("Build out fight scenario");
+			break;
+		case 'BRIBE': 
+			document.write("Build out pay scenario");
+			break;
+		case 'RUN':
+			document.write("Build out run scenario");
+			break;
+		default:
+			document.write("Default");
+	}
+};
+*/
 /*var options = function(check) {          // not sure if i'll use this yet
 	if (option === 's') {
 		document.write("Display Character attributes");
