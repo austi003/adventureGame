@@ -121,6 +121,15 @@ var fightOrFlee = function() {
 						+ "Press 3 to try to bribe him \n"
 						+ "Press 4 to check your current health and attributes \n");
 	
+	while (["1", "2", "3", "4"].indexOf(battleChoice) < 0) {
+		window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.")
+		battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
+						+ "Press 1 to Fight him \n"
+						+ "Press 2 to try to sneak around him \n"
+						+ "Press 3 to try to bribe him \n"
+						+ "Press 4 to check your current health and attributes \n");
+	};
+	
 	switch(battleChoice) {
 		case '1':
 			document.write("Build out fight scenario");
