@@ -81,8 +81,10 @@ badGuy.mainBoss = {
 	reward: [5000, ]
 };
 */
-
+/*
+// needed global variable to work with scenarios outside of my function
 var scenario = 0;
+
 //simple function to create the number of scenarios
 howManyScenarios = function(number) {
 	scenario = new Array(number);
@@ -91,10 +93,10 @@ howManyScenarios = function(number) {
 	};
 };
 
-howManyScenarios(4);
+howManyScenarios(4); //if you change the argument, add additional switch cases
 
+//iterating through my howManyScenarios function to build out scenarios using a switch case
 for (i=0; i < scenario.length; i++) {
-	// Build out scenarios as objects with a switch case
 	switch(scenario[i]) {
 		case 'Scenario 1':
 			window.alert("You run into a troll");
@@ -110,63 +112,33 @@ for (i=0; i < scenario.length; i++) {
 			break;
 	};
 };
+*/
 
-// prompt to be presented to user each time confronted by a bad guy
-var encounter = "In the heat of the moment, what do you do? Fight him? Bribe him? Or run?"
-/*
-	var choice = prompt(encounter).toUpperCase();
+var fightOrFlee = function() {
+	var battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
+						+ "Press 1 to Fight him \n"
+						+ "Press 2 to try to sneak around him \n"
+						+ "Press 3 to try to bribe him \n"
+						+ "Press 4 to check your current health and attributes \n");
 	
-	switch(choice) {
-		case 'FIGHT':
+	switch(battleChoice) {
+		case '1':
 			document.write("Build out fight scenario");
 			break;
-		case 'BRIBE': 
-			document.write("Build out pay scenario");
+		case '2': 
+			document.write("Build out sneak around scenario");
 			break;
-		case 'RUN':
-			document.write("Build out run scenario");
+		case '3':
+			document.write("Build out try to bribe scenario");
 			break;
-		default:
-			document.write("Default");
-	}
-};
-*/
-/*var options = function(check) {          // not sure if i'll use this yet
-	if (option === 's') {
-		document.write("Display Character attributes");
+		case '4':
+			document.write("Display character status");
+			break;
 	};
-	else if (option === 'e'){
-		document.write("Thanks for playing");
-		// figure out how to exit program here
-	};
-	else {
-		break;
-	};
-}; */
-
-/* var fightOrFlee = function() {
-	var option = 4;
-	while (option != 1 || 2 || 3) {
-		option = prompt("What would you like to do? \n\n"
-						+ "Press 1 to Fight \n"
-						+ "Press 2 to try to sneak around \n"
-						+ "Press 3 to try to bribe him \n"
-						+ "Press 's' to check your current health and status \n"
-						+ "Press 'e' to exit the game");  //see if you can enter bad guys name here
-						window.alert("Invalid option. Please select a valid choice")
-				};
-	while (option != 1 || 2 || 3) {
-						if (option === 1 || 2 || 3) {
-							return option;
-						};
-						else if (option === 's') {
-							window.alert("You have 3.5/5 hearts, 200 golf");
-						}
-					}
 };
 
-var battle =  function() {
-};*/
+fightOrFlee();
+
 
 </script>
 
