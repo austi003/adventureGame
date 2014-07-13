@@ -11,7 +11,6 @@
 <script>
 
 // Begin Game
-/*
 window.alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
 window.alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
 			+ " young CodeNinja. As the story progresses, you will be provided with various scenarios. "
@@ -23,26 +22,27 @@ window.alert("How the game works: \n\nCodeNinja is a text based RPG game that fo
 			+ "Hope you enjoy!"
 		);
 
-var name = prompt("What would you like our young CodeNinja to be named?");
-		
+var userName = prompt("What would you like our young CodeNinja to be named?");
+
 // Setting the scene
-window.alert("As our story begins, we find our young hero " + name + " as he begins his weekly journey "
-			+ "to see the wise & powerful Grand Ninja. \n\nToday appears to be like any other day as " + name + " sets out on a 5 "
-			+ "mile hike through the Miramar forest across the great land of Oz. What our unsuspecting character " + name + " does not realize though, "
+window.alert("As our story begins, we find our young hero " + userName + " as he begins his weekly journey "
+			+ "to see the wise & powerful Grand Ninja. \n\nToday appears to be like any other day as " + userName + " sets out on a 5 "
+			+ "mile hike through the Miramar forest across the great land of Oz. What our unsuspecting character " + userName + " does not realize though, "
 			+ "is that the forest has just been overrun with dark & dangerous creatures. \n\n"
-			+ "With nothing but a sword in hand and 200 Gold pieces, we join " + name + " for a CodeNinja adventure!"
+			+ "With nothing but a sword in hand and 200 Gold pieces, we join " + userName + " for a CodeNinja adventure!"
 	);
 
-confirm("The game is starting now!"); */
+confirm("The game is starting now!"); 
 
-/*
 // declare our hero & enemies and set initial attributes
 
-var codeNinja = new Object();
-codeNinja.hero = {
-	name: name,
-	health: 3,
-	hitMultiplier: 2,
+var codeNinja = {
+	name: userName,
+	health: [3,3],
+	weapon: "Small sword",   //build out list of potential weapons as objects
+	defense: "none",         //build out defense as objects 
+	attackPower: 2,
+	specialItems: ["Healing Potion"], //build out list of potential items as objects
 	gold: 200
 };
 
@@ -53,7 +53,8 @@ badGuy.one = {
 	name: "Bad Guy 1",
 	health: 2,
 	hitMultiplier: 2,
-	reward: [200, .5, 1]
+	reward: [200, .5, 1],
+	willAcceptBribe: 15
 };
 badGuy.two = {
 	name: "Bad Guy 2",
@@ -68,7 +69,6 @@ badGuy.three = {
 	reward: [500, 1.5, -2]
 };
 badGuy.four = {
-	
 	name: "Bad Guy 4",
 	health: 4,
 	hitMultiplier: 2,
@@ -80,8 +80,7 @@ badGuy.mainBoss = {
 	hitMultiplier: 4,
 	reward: [5000, ]
 };
-*/
-/*
+
 // needed global variable to work with scenarios outside of my function
 var scenario = 0;
 
@@ -93,27 +92,19 @@ howManyScenarios = function(number) {
 	};
 };
 
-howManyScenarios(4); //if you change the argument, add additional switch cases
-
-//iterating through my howManyScenarios function to build out scenarios using a switch case
-for (i=0; i < scenario.length; i++) {
-	switch(scenario[i]) {
-		case 'Scenario 1':
-			window.alert("You run into a troll");
-			break;
-		case 'Scenario 2': 
-			window.alert("You run into a ogre");
-			break;
-		case 'Scenario 3':
-			window.alert("You run into a warewolf");
-			break;
-		case 'Scenario 4':
-			window.alert("You run into a wizard");
-			break;
-	};
+var displayHeroStatus = function() {
+	window.alert("Current Health:   " + codeNinja.health[0] + " / " + codeNinja.health[1] + "\n"
+				+ "Weapon:   " + codeNinja.weapon + "\n"
+				+ "Defense:   " + codeNinja.defense + "\n"
+				+ "Attack Power:   " + codeNinja.attackPower + "\n"
+				+ "Gold:   " + codeNinja.gold + "\n\n"
+				+ "Special Items:   " + codeNinja.specialItems + "\n\n");
 };
+/*
+var bribeBadGuy = function () {
+	var userBribe = parseInt(prompt("How many gold pieces will you try to bribe him with?"));
+}
 */
-
 var fightOrFlee = function() {
 	var battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
 						+ "Press 1 to Fight him \n"
@@ -140,14 +131,36 @@ var fightOrFlee = function() {
 		case '3':
 			document.write("Build out try to bribe scenario");
 			break;
-		case '4':
-			document.write("Display character status");
+		case '4':  //Display character properties
+			displayHeroStatus();
+			fightOrFlee();
 			break;
 	};
 };
 
-fightOrFlee();
+howManyScenarios(4); //if you change the argument, add additional switch cases
 
+//iterating through my howManyScenarios function to build out scenarios using a switch case
+for (i=0; i < scenario.length; i++) {
+	switch(scenario[i]) {
+		case 'Scenario 1':
+			window.alert("You run into a troll");
+			fightOrFlee();
+			break;
+		case 'Scenario 2': 
+			window.alert("You run into a ogre");
+			fightOrFlee();
+			break;
+		case 'Scenario 3':
+			window.alert("You run into a warewolf");
+			fightOrFlee();
+			break;
+		case 'Scenario 4':
+			window.alert("You run into a wizard");
+			fightOrFlee();
+			break;
+	};
+};
 
 </script>
 
