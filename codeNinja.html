@@ -9,7 +9,7 @@
 <body>
 
 <script>
-
+/*
 // Begin Game
 window.alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
 window.alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
@@ -21,9 +21,9 @@ window.alert("How the game works: \n\nCodeNinja is a text based RPG game that fo
 			+ "3. Exit the game by pressing the letter 'e' \n\n"
 			+ "Hope you enjoy!"
 		);
-
+*/
 var userName = prompt("What would you like our young CodeNinja to be named?");
-
+/*
 // Setting the scene
 window.alert("As our story begins, we find our young hero " + userName + " as he begins his weekly journey "
 			+ "to see the wise & powerful Grand Ninja. \n\nToday appears to be like any other day as " + userName + " sets out on a 5 "
@@ -33,7 +33,7 @@ window.alert("As our story begins, we find our young hero " + userName + " as he
 	);
 
 confirm("The game is starting now!"); 
-
+*/
 // declare our hero & enemies and set initial attributes
 
 var codeNinja = {
@@ -50,37 +50,37 @@ var codeNinja = {
 // reward is an array in the format of [gold, hearts, beer] health & beer can have a postive or negative consequence
 var badGuy = new Object();
 badGuy.one = {
-	name: "Bad Guy 1",
+	name: "'Bad Guy 1'",
 	health: 2,
-	hitMultiplier: 2,
+	attackPower: 2,
 	reward: [200, .5, 1],
 	willAcceptBribe: 15
 }; 
 badGuy.two = {
 	name: "Bad Guy 2",
 	health: 3,
-	hitMultiplier: 1.5,
+	attackPower: 1.5,
 	reward: [250, 1, -1]
 };
 badGuy.three = {
 	name: "Bad Guy 3",
 	health: 2,
-	hitMultiplier: 3,
+	attackPower: 3,
 	reward: [500, 1.5, -2]
 };
 badGuy.four = {
 	name: "Bad Guy 4",
 	health: 4,
-	hitMultiplier: 2,
+	attackPower: 2,
 	reward: [1000, 2, 1]
 };
 badGuy.mainBoss = {
 	name: "Main Boss",
 	health: 6,
-	hitMultiplier: 4,
+	attackPower: 4,
 	reward: [5000, ]
 };
-
+/*
 // needed global variable to work with scenarios outside of my function
 var scenario = 0;
 
@@ -100,7 +100,42 @@ var displayHeroStatus = function() {
 				+ "Gold:   " + codeNinja.gold + "\n\n"
 				+ "Special Items:   " + codeNinja.specialItems + "\n\n");
 }; 
+*/
+var fight = function () {
+	while (codeNinja.health[0] > 0 && badGuy.one.health > 0) {  
+		var codeNinjaPower = Math.floor((Math.random() * codeNinja.attackPower) + 1);
+		var badGuyPower = Math.floor((Math.random() * badGuy.one.attackPower) + 1);
+		var lifeLost = 0;
+		
+		if (codeNinjaPower > badGuyPower) {
+			lifeLost = parseInt(codeNinjaPower - badGuyPower);
+			badGuy.one.health -= lifeLost;
+			window.alert("Congrats you landed a hit! " + badGuy.one.name 
+						+ " lost " + lifeLost + " point(s) of his life.");
+		} 
+		else if (codeNinjaPower == badGuyPower) {
+		
+		} 
+		else {
+			lifeLost = parseInt(badGuyPower - codeNinjaPower);
+			codeNinja.health[0] -= lifeLost;
+			window.alert("Ouch, " + badGuy.one + " landed a hit." 
+						+ " You lost " + lifeLost + " point(s) of your health.");
+		}; 
+	};
 
+if (codeNinja.health[0] = 0) {
+	window.alert("You lost");
+}
+else {
+	window.alert("You win");
+};
+
+};
+
+fight();
+
+/*
 var fightOrFlee = function() {
 	var battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
 						+ "Press 1 to Fight him \n"
@@ -119,7 +154,7 @@ var fightOrFlee = function() {
 	
 	switch(battleChoice) {
 		case '1':
-			document.write("Build out fight scenario");
+			fight();
 			break;
 		case '2': 
 			document.write("Build out sneak around scenario");
@@ -167,7 +202,7 @@ for (i=0; i < scenario.length; i++) {
 			fightOrFlee();
 			break;
 	};
-};
+}; */
 
 </script>
 
