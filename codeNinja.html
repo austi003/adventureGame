@@ -9,7 +9,10 @@
 <body>
 
 <script>
-/*
+
+var b = 0;  //needed global variable used to select which bad guy to pull into the scenario
+var scenario = 0;  // needed global variable to work with scenarios outside of the function
+
 // Begin Game
 window.alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
 window.alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
@@ -21,9 +24,9 @@ window.alert("How the game works: \n\nCodeNinja is a text based RPG game that fo
 			+ "3. Exit the game by pressing the letter 'e' \n\n"
 			+ "Hope you enjoy!"
 		);
-*/
+
 var userName = prompt("What would you like our young CodeNinja to be named?");
-/*
+
 // Setting the scene
 window.alert("As our story begins, we find our young hero " + userName + " as he begins his weekly journey "
 			+ "to see the wise & powerful Grand Ninja. \n\nToday appears to be like any other day as " + userName + " sets out on a 5 "
@@ -33,56 +36,36 @@ window.alert("As our story begins, we find our young hero " + userName + " as he
 	);
 
 confirm("The game is starting now!"); 
-*/
+
 // declare our hero & enemies and set initial attributes
 
 var codeNinja = {
 	name: userName,
-	health: [3,3],
+	health: [5,5],
 	weapon: "Small sword",   //build out list of potential weapons as objects
 	defense: "none",         //build out defense as objects 
-	attackPower: 2,
+	attackPower: 4,
 	specialItems: ["Healing Potion"], //build out list of potential items as objects
 	gold: 200
 };
 
 // create all badGuy objects to be called throughout the game
 // reward is an array in the format of [gold, hearts, beer] health & beer can have a postive or negative consequence
-var badGuy = new Object();
-badGuy.one = {
-	name: "'Bad Guy 1'",
-	health: 2,
-	attackPower: 2,
-	reward: [200, .5, 1],
-	willAcceptBribe: 15
-}; 
-badGuy.two = {
-	name: "Bad Guy 2",
-	health: 3,
-	attackPower: 1.5,
-	reward: [250, 1, -1]
+function BadGuy(name,health,attackPower,reward,willAcceptBribe) {
+  this.name = name;
+  this.health = health;
+  this.attackPower = attackPower;
+  this.reward = reward;
+  this.willAcceptBribe = willAcceptBribe;
 };
-badGuy.three = {
-	name: "Bad Guy 3",
-	health: 2,
-	attackPower: 3,
-	reward: [500, 1.5, -2]
-};
-badGuy.four = {
-	name: "Bad Guy 4",
-	health: 4,
-	attackPower: 2,
-	reward: [1000, 2, 1]
-};
-badGuy.mainBoss = {
-	name: "Main Boss",
-	health: 6,
-	attackPower: 4,
-	reward: [5000, ]
-};
-/*
-// needed global variable to work with scenarios outside of my function
-var scenario = 0;
+
+var badGuy = new Array ();
+badGuy[0] = new BadGuy ("Bad Guy 1", 3, 3, [200, .5, 1], 15);
+badGuy[1] = new BadGuy ("Bad Guy 2", 4, 2.5, [250,1,-1], 30);
+badGuy[2] =  new BadGuy ("Bad Guy 3", 2, 5, [500,1.5,-2], 25);
+badGuy[3] = new BadGuy ("Bad Guy 4", 6, 7, [1000,2,1], 100);
+badGuy[4] = new BadGuy ("Main Boss", 10, 9, [5000, 4, 2], 1000000);
+
 
 //simple function to create the number of scenarios
 howManyScenarios = function(number) {
@@ -92,7 +75,7 @@ howManyScenarios = function(number) {
 	};
 };
 
-var displayHeroStatus = function() {
+var displayCharacterAttributes = function() {
 	window.alert("Current Health:   " + codeNinja.health[0] + " / " + codeNinja.health[1] + "\n"
 				+ "Weapon:   " + codeNinja.weapon + "\n"
 				+ "Defense:   " + codeNinja.defense + "\n"
@@ -100,42 +83,72 @@ var displayHeroStatus = function() {
 				+ "Gold:   " + codeNinja.gold + "\n\n"
 				+ "Special Items:   " + codeNinja.specialItems + "\n\n");
 }; 
-*/
-var fight = function () {
-	while (codeNinja.health[0] > 0 && badGuy.one.health > 0) {  
+
+var inBattleOptions = function () {
+	var yourTurn = prompt("Would you like to do now? \n\n" 
+						+ "Press (a) for Attack \n"
+						+ "Press (f) to flee battle \n"
+						+ "Press (s) to check your health & status").toLowerCase();
+	while (["a", "f", "s"].indexOf(yourTurn) < 0) {
+		window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.");
+		yourTurn = prompt("Would you like to do now? \n\n" 
+						+ "Press (a) for Attack \n"
+						+ "Press (f) to flee battle \n"
+						+ "Press (s) to check your health & status").toLowerCase();
+	};
+	switch(yourTurn) {
+		case 'a':
+			whoHitWho();
+			break;
+		case 'f': 
+			window.alert("You retreat from battle, but are faced with a choice of what to do next:");
+			fightOrFlee();
+			//make sure scenario does not advance
+			break;
+		case 's':
+			displayCharacterAttributes();
+			inBattleOptions();
+	};
+};
+
+var whoHitWho = function () {
+	if (codeNinja.health[0] > 0 && badGuy[b].health > 0) {  
 		var codeNinjaPower = Math.floor((Math.random() * codeNinja.attackPower) + 1);
-		var badGuyPower = Math.floor((Math.random() * badGuy.one.attackPower) + 1);
+		var badGuyPower = Math.floor((Math.random() * badGuy[b].attackPower) + 1);
 		var lifeLost = 0;
 		
 		if (codeNinjaPower > badGuyPower) {
 			lifeLost = parseInt(codeNinjaPower - badGuyPower);
-			badGuy.one.health -= lifeLost;
-			window.alert("Congrats you landed a hit! " + badGuy.one.name 
+			badGuy[b].health -= lifeLost;
+			window.alert("Congrats you landed a hit! " + badGuy[b].name 
 						+ " lost " + lifeLost + " point(s) of his life.");
 		} 
 		else if (codeNinjaPower == badGuyPower) {
-		
+			window.alert("You both lunged and clashed swords. No damage done.");
 		} 
 		else {
 			lifeLost = parseInt(badGuyPower - codeNinjaPower);
 			codeNinja.health[0] -= lifeLost;
-			window.alert("Ouch, " + badGuy.one + " landed a hit." 
+			window.alert("Ouch, " + badGuy[b].name + " landed a hit." 
 						+ " You lost " + lifeLost + " point(s) of your health.");
 		}; 
 	};
-
-if (codeNinja.health[0] = 0) {
-	window.alert("You lost");
-}
-else {
-	window.alert("You win");
+	didAnybodyWin();
 };
 
+var didAnybodyWin = function () {
+	if (codeNinja.health[0] === 0) {
+		window.alert("You lost");
+	}
+	else if (badGuy[b].health === 0) {
+		window.alert("You win");
+	}
+	else {
+		inBattleOptions();
+	};
 };
 
-fight();
 
-/*
 var fightOrFlee = function() {
 	var battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
 						+ "Press 1 to Fight him \n"
@@ -144,7 +157,7 @@ var fightOrFlee = function() {
 						+ "Press 4 to check your current health and attributes \n");
 	
 	while (["1", "2", "3", "4"].indexOf(battleChoice) < 0) {
-		window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.")
+		window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.");
 		battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
 						+ "Press 1 to Fight him \n"
 						+ "Press 2 to try to sneak around him \n"
@@ -154,7 +167,7 @@ var fightOrFlee = function() {
 	
 	switch(battleChoice) {
 		case '1':
-			fight();
+			inBattleOptions();
 			break;
 		case '2': 
 			document.write("Build out sneak around scenario");
@@ -165,16 +178,16 @@ var fightOrFlee = function() {
 				userBribe = (parseInt(prompt("Please use numbers only. How many gold pieces will you try to bribe him with?")));
 			};
 			
-			if (userBribe < badGuy.one.willAcceptBribe) {
-					window.alert(badGuy.one.name + " fell to the ground laughing! Apparently your bribe was not large enough.");
+			if (userBribe < badGuy[b].willAcceptBribe) {
+					window.alert(badGuy[b].name + " fell to the ground laughing! Apparently your bribe was not large enough.");
 					fightOrFlee();
 			}
 			else {
-				document.write("You successfully bribed " + badGuy.one.name + " and you are on your way!");
+				document.write("You successfully bribed " + badGuy[b].name + " and you are on your way!");
 			};
 			break;
 		case '4':  //Display character properties
-			displayHeroStatus();
+			displayCharacterAttributes();
 			fightOrFlee();
 			break;
 	};
@@ -184,25 +197,30 @@ howManyScenarios(4); //if you change the argument, add additional switch cases
 
 //iterating through my howManyScenarios function to build out scenarios using a switch case
 for (i=0; i < scenario.length; i++) {
+
 	switch(scenario[i]) {
 		case 'Scenario 1':
 			window.alert("You run into a troll");
+			b = 0;
 			fightOrFlee();
 			break;
 		case 'Scenario 2': 
 			window.alert("You run into a ogre");
+			b = 1;
 			fightOrFlee();
 			break;
 		case 'Scenario 3':
 			window.alert("You run into a warewolf");
+			b = 2;
 			fightOrFlee();
 			break;
 		case 'Scenario 4':
 			window.alert("You run into a wizard");
+			b = 3;
 			fightOrFlee();
 			break;
 	};
-}; */
+}; 
 
 </script>
 
