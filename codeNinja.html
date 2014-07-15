@@ -17,11 +17,7 @@ var scenario = 0;  // needed global variable to work with scenarios outside of t
 window.alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
 window.alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
 			+ " young CodeNinja. As the story progresses, you will be provided with various scenarios. "
-			+ "As each scenario presents itself, you will be provided with a few possible alternative actions. "
-			+ "Each time you are prompted for an action, you can perform one of the following tasks: \n\n"
-			+ "1. Respond to the current scenario by selecting the appropriate action \n\n"
-			+ "2. See the current status of your character by pressing the letter 's' \n\n"
-			+ "3. Exit the game by pressing the letter 'e' \n\n"
+			+ "As each scenario presents itself, you will be provided with a few possible alternative actions to choose from. \n\n"
 			+ "Hope you enjoy!"
 		);
 
@@ -84,6 +80,11 @@ var displayCharacterAttributes = function() {
 				+ "Special Items:   " + codeNinja.specialItems + "\n\n");
 }; 
 
+var userExit = function() {
+	window.alert("Sorry to see you go. Thanks for playing! \n\n"
+				+"If you would like to play again, hit refresh on your browser window.");
+};
+
 var inBattleOptions = function () {
 	var yourTurn = prompt("Would you like to do now? \n\n" 
 						+ "Press (a) for Attack \n"
@@ -137,15 +138,26 @@ var whoHitWho = function () {
 };
 
 var didAnybodyWin = function () {
-	if (codeNinja.health[0] === 0) {
+	if (codeNinja.health[0] <= 0) {
 		window.alert("You lost");
+		i = scenario.length - 2;
 	}
-	else if (badGuy[b].health === 0) {
+	else if (badGuy[b].health <= 0) {
 		window.alert("You win");
 	}
 	else {
 		inBattleOptions();
 	};
+};
+
+var sneakAround = function () {
+	randomNumber = Math.random();
+		if (randomNumber > .5) {
+			document.write("Success"); //build out moving the scenario forward
+		}
+		else {
+			document.write("Failure"); //build out losing life and bad things happening
+		};
 };
 
 
@@ -170,7 +182,7 @@ var fightOrFlee = function() {
 			inBattleOptions();
 			break;
 		case '2': 
-			document.write("Build out sneak around scenario");
+			sneakAround();
 			break;
 		case '3': //Try to bribe the bad guy
 			var userBribe = (parseInt(prompt("How many gold pieces will you try to bribe him with?"))); 
@@ -193,7 +205,7 @@ var fightOrFlee = function() {
 	};
 };
 
-howManyScenarios(4); //if you change the argument, add additional switch cases
+howManyScenarios(5); //if you change the argument, add additional switch cases
 
 //iterating through my howManyScenarios function to build out scenarios using a switch case
 for (i=0; i < scenario.length; i++) {
@@ -219,6 +231,9 @@ for (i=0; i < scenario.length; i++) {
 			b = 3;
 			fightOrFlee();
 			break;
+		case 'Scenario 5':
+			window.alert("You lost the battle. Our hero is dead."); 
+			window.alert("Thank you for playing! To play again, hit refresh on your browser window.");	
 	};
 }; 
 
