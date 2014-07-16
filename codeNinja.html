@@ -62,6 +62,46 @@ badGuy[2] =  new BadGuy ("Bad Guy 3", 2, 5, [500,1.5,-2], 25);
 badGuy[3] = new BadGuy ("Bad Guy 4", 6, 7, [1000,2,1], 100);
 badGuy[4] = new BadGuy ("Main Boss", 10, 9, [5000, 4, 2], 1000000);
 
+// function to create all of my items
+function Item(name,quantity,cost,description) {
+  this.name = name;
+  this.quantity = quantity;
+  this.cost = cost;
+  this.description = description;
+};
+
+var item = new Array ();  //Object array displaying all items in the ItemShop
+item[0] = new Item ("Small Healing Potion", 4, 50, "Add 1 to your health");
+item[1] = new Item ("Large Healing Potion", 2, 75, "Add 2 to your health");
+item[2] = new Item ("Large Sword", 1, 400, "Increase your attach power by .5");
+item[3]	= new Item ("Shield", 1, 350, "Help protect yourself");
+item[4] = new Item ("Sleeping potion", 2, 700, "Puts enemy to sleep");
+
+var displayItemShop = function () {
+	window.alert("Welcome to the Item Shop. Please feel free to look around.");
+	window.alert("The following items are for sale: \n\n"
+				+ "Item: " + item[0].name + "\n"                   //first item
+				+ "    Quantity: " + item[0].quantity + "\n" 
+				+ "    Price: " + item[0].cost + " gold pieces \n"
+				+ "    Use: " + item[0].description + "\n\n"
+				+ "Item: " + item[1].name + "\n"                   //second item 
+				+ "    Quantity: " + item[1].quantity + "\n" 
+				+ "    Price: " + item[1].cost + " gold pieces \n"
+				+ "    Use: " + item[1].description + "\n\n"
+				+ "Item: " + item[2].name + "\n"                  //third item
+				+ "    Quantity: " + item[2].quantity + "\n" 
+				+ "    Price: " + item[2].cost + " gold pieces \n"
+				+ "    Use: " + item[2].description + "\n\n"
+				+ "Item: " + item[3].name + "\n"                  //fourth item
+				+ "    Quantity: " + item[3].quantity + "\n" 
+				+ "    Price: " + item[3].cost + " gold pieces \n"
+				+ "    Use: " + item[3].description + "\n\n"
+				+ "Item: " + item[4].name + "\n"                  //final item
+				+ "    Quantity: " + item[4].quantity + "\n" 
+				+ "    Price: " + item[4].cost + " gold pieces \n"
+				+ "    Use: " + item[4].description + "\n\n"
+				);
+};			
 
 //simple function to create the number of scenarios
 howManyScenarios = function(number) {
@@ -139,8 +179,9 @@ var whoHitWho = function () {
 
 var didAnybodyWin = function () {
 	if (codeNinja.health[0] <= 0) {
-		window.alert("You lost");
-		i = scenario.length - 2;
+			window.alert("You lost the battle. Our hero is dead."); 
+			window.alert("Thank you for playing! To play again, hit refresh on your browser window.");
+		i = scenario.length + 1;
 	}
 	else if (badGuy[b].health <= 0) {
 		window.alert("You win");
@@ -191,11 +232,14 @@ var fightOrFlee = function() {
 			};
 			
 			if (userBribe < badGuy[b].willAcceptBribe) {
-					window.alert(badGuy[b].name + " fell to the ground laughing! Apparently your bribe was not large enough.");
+					window.alert(badGuy[b].name + " fell to the ground laughing! Apparently your bribe was not large enough. However, he is still "
+					+ "keeping your gold.");
+					codeNinja.gold -= userBribe;
 					fightOrFlee();
 			}
 			else {
 				document.write("You successfully bribed " + badGuy[b].name + " and you are on your way!");
+				codeNinja.gold -= userBribe;
 			};
 			break;
 		case '4':  //Display character properties
@@ -205,7 +249,7 @@ var fightOrFlee = function() {
 	};
 };
 
-howManyScenarios(5); //if you change the argument, add additional switch cases
+howManyScenarios(4); //if you change the argument, add additional switch cases
 
 //iterating through my howManyScenarios function to build out scenarios using a switch case
 for (i=0; i < scenario.length; i++) {
@@ -216,24 +260,25 @@ for (i=0; i < scenario.length; i++) {
 			b = 0;
 			fightOrFlee();
 			break;
-		case 'Scenario 2': 
+		case 'Scenario 2':
+			window.alert("You find a store to purchase goods from");
+			displayItemShop();
+			break;
+		case 'Scenario 3': 
 			window.alert("You run into a ogre");
 			b = 1;
 			fightOrFlee();
 			break;
-		case 'Scenario 3':
+		case 'Scenario 4':
 			window.alert("You run into a warewolf");
 			b = 2;
 			fightOrFlee();
 			break;
-		case 'Scenario 4':
+		case 'Scenario 5':
 			window.alert("You run into a wizard");
 			b = 3;
 			fightOrFlee();
-			break;
-		case 'Scenario 5':
-			window.alert("You lost the battle. Our hero is dead."); 
-			window.alert("Thank you for playing! To play again, hit refresh on your browser window.");	
+			break;	
 	};
 }; 
 
