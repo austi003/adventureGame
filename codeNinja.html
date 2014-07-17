@@ -77,30 +77,18 @@ item[2] = new Item ("Large Sword", 1, 400, "Increase your attach power by .5");
 item[3]	= new Item ("Shield", 1, 350, "Help protect yourself");
 item[4] = new Item ("Sleeping potion", 2, 700, "Puts enemy to sleep");
 
+var string = "The following items are for sale: \n\n";  //build out string which will display all items in the store
+
+for (i=0; i<item.length; i++) {
+		string += "Item: " + item[i].name + "\n"                   
+				+ "    Quantity: " + item[i].quantity + "\n" 
+				+ "    Price: " + item[i].cost + " gold pieces \n"
+				+ "    Use: " + item[i].description + "\n\n";
+	};
+
 var displayItemShop = function () {
 	window.alert("Welcome to the Item Shop. Please feel free to look around.");
-	window.alert("The following items are for sale: \n\n"
-				+ "Item: " + item[0].name + "\n"                   //first item
-				+ "    Quantity: " + item[0].quantity + "\n" 
-				+ "    Price: " + item[0].cost + " gold pieces \n"
-				+ "    Use: " + item[0].description + "\n\n"
-				+ "Item: " + item[1].name + "\n"                   //second item 
-				+ "    Quantity: " + item[1].quantity + "\n" 
-				+ "    Price: " + item[1].cost + " gold pieces \n"
-				+ "    Use: " + item[1].description + "\n\n"
-				+ "Item: " + item[2].name + "\n"                  //third item
-				+ "    Quantity: " + item[2].quantity + "\n" 
-				+ "    Price: " + item[2].cost + " gold pieces \n"
-				+ "    Use: " + item[2].description + "\n\n"
-				+ "Item: " + item[3].name + "\n"                  //fourth item
-				+ "    Quantity: " + item[3].quantity + "\n" 
-				+ "    Price: " + item[3].cost + " gold pieces \n"
-				+ "    Use: " + item[3].description + "\n\n"
-				+ "Item: " + item[4].name + "\n"                  //final item
-				+ "    Quantity: " + item[4].quantity + "\n" 
-				+ "    Price: " + item[4].cost + " gold pieces \n"
-				+ "    Use: " + item[4].description + "\n\n"
-				);
+	window.alert(string);
 };			
 
 //simple function to create the number of scenarios
