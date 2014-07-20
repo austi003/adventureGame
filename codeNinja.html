@@ -10,65 +10,47 @@
 
 <script>
 
-var b = 0;  //needed global variable used to select which bad guy to pull into the scenario
-var scenario = 0;  // needed global variable to work with scenarios outside of the function
-
-// Begin Game
-window.alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
-window.alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
-			+ " young CodeNinja. As the story progresses, you will be provided with various scenarios. "
-			+ "As each scenario presents itself, you will be provided with a few possible alternative actions to choose from. \n\n"
-			+ "Hope you enjoy!"
-		);
-
-var userName = prompt("What would you like our young CodeNinja to be named?");
-
-// Setting the scene
-window.alert("As our story begins, we find our young hero " + userName + " as he begins his weekly journey "
-			+ "to see the wise & powerful Grand Ninja. \n\nToday appears to be like any other day as " + userName + " sets out on a 5 "
-			+ "mile hike through the Miramar forest across the great land of Oz. What our unsuspecting character " + userName + " does not realize though, "
-			+ "is that the forest has just been overrun with dark & dangerous creatures. \n\n"
-			+ "With nothing but a sword in hand and 200 Gold pieces, we join " + userName + " for a CodeNinja adventure!"
-	);
-
-confirm("The game is starting now!"); 
-
 // create all classes & objects needed for my game; our hero, enemies, weapon choices, defense choices, items, etc.
 
-//create items class; a parent class for all items to be used by characters
+//create Item superconstructor; used for other constructors to inherit from
 function Item (name,effect) {
 	this.name = name;
 	this.effect = effect;
+	this.action = function() {
+		return ("The value being returned is: " + Math.floor((Math.random() * this.effect) + 1));
+	}
 };
 
-	//create weapons class with method
+	//create weapons constructor
 	function Weapon(name,effect){
-		this.attack = function() {
-			return (Math.floor((Math.random() * this.effect) + 1));
-		};
+		this.name = name;
+		this.effect = effect;
 	};
 	Weapon.prototype = new Item();
 
 	//create available weapons objects	
-	var fists = new Weapon("Fists", 2);
-	var smallSword = new Weapon("Small Sword", 5);
-	var largeSword = new Weapon("Large Sword", 10);
+	var weapon = new Array ();
+	weapon[0] = new Weapon("Fists", 2);
+	weapon[1] = new Weapon("Small Sword", 5);
+	weapon[2] = new Weapon("Large Sword", 10);
 
-	//create defense class with method
+	//create defense constructor 
 	function Defense(name,effect){
-		this.defense = function() {
-			return (Math.floor((Math.randon() * this.effect) + 1));
-		};
+		this.name = name;
+		this.effect = effect;
 	};
 	Defense.prototype = new Item();
 
 	//create available defense objects
-	var none = new Defense("None", 0);
-	var smallShield = new Defense("Small Shield", 1);
-	var largeShield = new Defense("Large Shield", 3);
+	var defense = new Array ();
+	defense[0] = new Defense("None", 0);
+	defense[1] = new Defense("Small Shield", 1);
+	defense[2] = new Defense("Large Shield", 3);
 
-	// function to create all potions that can be used
+	// potion object constructor
 	function Potion(name,effect,quantity,cost,description) {
+  		this.name = name;
+  		this.effect = effect;
   		this.quantity = quantity;
   		this.cost = cost;
   		this.description = description;
@@ -81,246 +63,93 @@ function Item (name,effect) {
 	potion[1] = new Potion ("Large Healing Potion", 3, 2, 75, "Add 3 to your health");
 	potion[2] = new Potion ("Sleeping potion", 1, 2, 700, "Puts enemy to sleep");
 
-//create characters class for our hero and bad guys
-function = Character(name) {
+
+//create Character superconstructor; used for other constructors to inherit from
+function Character(name) {
 	this.name = name;
 };
 
 	//create our hero & set initial properties
 	var codeNinja = {
-		name: userName,
+		name: " Young CodeNinja",
 		health: [5,5],
-		weapon: fists,   //build out list of potential weapons as objects
-		defense: none,         //build out defense as objects 
-		specialItems: [potion[0]], //build out list of potential items as objects
-	gold: 200
-};
-var smallSwordAttack = smallSword.attack();  //stores the value of the property
-var largeSwordAttack = largeSword.attack(); //stores the value of the property
-
-
-// create all badGuy objects to be called throughout the game
-// reward is an array in the format of [gold, hearts, beer] health & beer can have a postive or negative consequence
-function BadGuy(name,health,attackPower,reward,willAcceptBribe) {
-  this.name = name;
-  this.health = health;
-  this.attackPower = attackPower;
-  this.reward = reward;
-  this.willAcceptBribe = willAcceptBribe;
-};
-
-var badGuy = new Array ();
-badGuy[0] = new BadGuy ("Bad Guy 1", 3, 3, [200, .5, 1], 15);
-badGuy[1] = new BadGuy ("Bad Guy 2", 4, 2.5, [250,1,-1], 30);
-badGuy[2] =  new BadGuy ("Bad Guy 3", 2, 5, [500,1.5,-2], 25);
-badGuy[3] = new BadGuy ("Bad Guy 4", 6, 7, [1000,2,1], 100);
-badGuy[4] = new BadGuy ("Main Boss", 10, 9, [5000, 4, 2], 1000000);
-
-
-
-//this function is used to build out the ItemShop and gather a choice from user on whether or not to purchase goods
-var buildString = function () {
-	var string = "The following items are for sale: \n\n";  //build out string which will display all items in the store
-
-	for (i=0; i<item.length; i++) {
-		string += "Item: " + item[i].name + "\n"                   
-				+ "    Quantity: " + item[i].quantity + "\n" 
-				+ "    Price: " + item[i].cost + " gold pieces \n"
-				+ "    Use: " + item[i].description + "\n\n";
+		weapon: weapon[0],
+		defense: defense[0],  
+		specialItems: [potion[0]],
+		gold: 200
 	};
+	codeNinja.prototype = new Character();
 
-	string += "\n Would you like to purchase anything? y or n";
-	var purchaseChoice = prompt(string).toLowerCase();
-	
-	while (["y", "n"].indexOf(purchaseChoice) < 0) {  //make sure they made a valid y or n choice
-		window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.");
-		purchaseChoice = prompt(string).toLowerCase();
+	// create all badGuy objects to be called throughout the game
+	// reward is an array in the format of [gold, hearts, beer] health & beer can have a postive or negative consequence
+	function BadGuy(name,health,attackPower,reward,willAcceptBribe) {
+    	this.name = name;
+    	this.health = health;
+  		this.attackPower = attackPower;
+  		this.reward = reward;
+  		this.willAcceptBribe = willAcceptBribe;
 	};
-	
-	switch(purchaseChoice) {  //route based on their choice
-		case 'y': window.alert("build out purchase function"); break;
-		case 'n': window.alert("move on"); break;
-		default: window.alert("is it looking for a default case?"); break;
-	};
-};
+	BadGuy.prototype = new Character();
 
-var displayItemShop = function () {
-	window.alert("Welcome to the Item Shop. Please feel free to look around.");
-	buildString();
-};			
+	var badGuy = new Array ();
+	badGuy[0] = new BadGuy ("Bad Guy 1", 3, 3, [200, .5, 1], 15);
+	badGuy[1] = new BadGuy ("Bad Guy 2", 4, 2.5, [250,1,-1], 30);
+	badGuy[2] =  new BadGuy ("Bad Guy 3", 2, 5, [500,1.5,-2], 25);
+	badGuy[3] = new BadGuy ("Bad Guy 4", 6, 7, [1000,2,1], 100);
+	badGuy[4] = new BadGuy ("Main Boss", 10, 9, [5000, 4, 2], 1000000);
 
-//simple function to create the number of scenarios
-howManyScenarios = function(number) {
-	scenario = new Array(number);
-	for (j=0; j < scenario.length; j++) {
-		scenario[j] = ("Scenario " + (1 + j));
-	};
-};
-
-var displayCharacterAttributes = function() {
-	window.alert("Current Health:   " + codeNinja.health[0] + " / " + codeNinja.health[1] + "\n"
-				+ "Weapon:   " + codeNinja.weapon + "\n"
-				+ "Defense:   " + codeNinja.defense + "\n"
-				+ "Attack Power:   " + codeNinja.attackPower + "\n"
-				+ "Gold:   " + codeNinja.gold + "\n\n"
-				+ "Special Items:   " + codeNinja.specialItems + "\n\n");
-}; 
-
-var userExit = function() {
-	window.alert("Sorry to see you go. Thanks for playing! \n\n"
-				+"If you would like to play again, hit refresh on your browser window.");
-};
-
-var inBattleOptions = function () {
-	var yourTurn = prompt("Would you like to do now? \n\n" 
-						+ "Press (a) for Attack \n"
-						+ "Press (f) to flee battle \n"
-						+ "Press (s) to check your health & status").toLowerCase();
-	while (["a", "f", "s"].indexOf(yourTurn) < 0) {
-		window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.");
-		yourTurn = prompt("Would you like to do now? \n\n" 
-						+ "Press (a) for Attack \n"
-						+ "Press (f) to flee battle \n"
-						+ "Press (s) to check your health & status").toLowerCase();
-	};
-	switch(yourTurn) {
-		case 'a': whoHitWho(); break;
-		case 'f': window.alert("You retreat from battle, but are faced with a choice of what to do next:");
-			fightOrFlee(); //make sure scenario does not advance
-			break;
-		case 's': displayCharacterAttributes(); inBattleOptions();
-	};
-};
-
-var whoHitWho = function () {
-	if (codeNinja.health[0] > 0 && badGuy[b].health > 0) {  
-		var codeNinjaPower = Math.floor((Math.random() * codeNinja.attackPower) + 1);
-		var badGuyPower = Math.floor((Math.random() * badGuy[b].attackPower) + 1);
-		var lifeLost = 0;
+//object constructor to create all of the scenarios within the game
+function Scenario (name,storyLine,action) {    //action will be the function called such as fightOrFlee() or battleChoice()
+	this.name = name;
+	this.storyLine = storyLine;
+	this.action = function() {
 		
-		if (codeNinjaPower > badGuyPower) {
-			lifeLost = parseInt(codeNinjaPower - badGuyPower);
-			badGuy[b].health -= lifeLost;
-			window.alert("Congrats you landed a hit! " + badGuy[b].name 
-						+ " lost " + lifeLost + " point(s) of his life.");
-		} 
-		else if (codeNinjaPower == badGuyPower) {
-			window.alert("You both lunged and clashed swords. No damage done.");
-		} 
-		else {
-			lifeLost = parseInt(badGuyPower - codeNinjaPower);
-			codeNinja.health[0] -= lifeLost;
-			window.alert("Ouch, " + badGuy[b].name + " landed a hit." 
-						+ " You lost " + lifeLost + " point(s) of your health.");
-		}; 
-	};
-	didAnybodyWin();
-};
-
-var didAnybodyWin = function () {
-	if (codeNinja.health[0] <= 0) {
-			window.alert("You lost the battle. Our hero is dead."); 
-			window.alert("Thank you for playing! To play again, hit refresh on your browser window.");
-		i = scenario.length + 1;
-	}
-	else if (badGuy[b].health <= 0) {
-		window.alert("You win");
-	}
-	else {
-		inBattleOptions();
 	};
 };
 
-var sneakAround = function () {
-	randomNumber = Math.random();
-		if (randomNumber > .5) {
-			document.write("Success"); //build out moving the scenario forward
-		}
-		else {
-			document.write("Failure"); //build out losing life and bad things happening
+	var scenario = new Array ();
+	scenario[0] = new Scenario ("Scenario 1", "This scenario goes like this. You will face..." + badGuy[0].name);
+	scenario[1] = new Scenario ("Scenario 2", "This scenario goes like this. Itemshop", ItemShop());
+	scenario[2] = new Scenario ("Scenario 3", "This scenario goes like this. You will face..." + badGuy[1].name);
+	scenario[3] = new Scenario ("Scenario 4", "This scenario goes like this. You will face..." + badGuy[2].name);
+	scenario[4] = new Scenario ("Scenario 5", "This scenario goes like this. You will face..." + badGuy[3].name);
+	scenario[5] = new Scenario ("Scenario 6", "This scenario goes like this. You will face..." + badGuy[4].name);
+
+// ALL FUNCTIONS THAT ARE PART OF THE ACTION FOR THE GAME
+
+//build out ItemShop object along with two methods to displayItems & purchase goods
+function ItemShop() {
+	function buildString () {
+		var string = ("The following items are for sale: \n\n");  //build out string which will display all items in the store
+
+		for (i=0; i<potion.length; i++) {
+			string += "Item: " + potion[i].name + "\n"                   
+				+ "    Quantity in stock: " + potion[i].quantity + "\n" 
+				+ "    Price: " + potion[i].cost + " gold pieces \n"
+				+ "    Description: " + potion[i].description + "\n\n";
 		};
-};
-
-
-var fightOrFlee = function() {
-	var battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
-						+ "Press 1 to Fight him \n"
-						+ "Press 2 to try to sneak around him \n"
-						+ "Press 3 to try to bribe him \n"
-						+ "Press 4 to check your current health and attributes \n");
-	
-	while (["1", "2", "3", "4"].indexOf(battleChoice) < 0) {
-		window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.");
-		battleChoice = prompt("In the heat of the moment, what do you do? Fight him? Bribe him? Or run? \n\n"
-						+ "Press 1 to Fight him \n"
-						+ "Press 2 to try to sneak around him \n"
-						+ "Press 3 to try to bribe him \n"
-						+ "Press 4 to check your current health and attributes \n");
+		return string;
 	};
 	
-	switch(battleChoice) {
-		case '1':
-			inBattleOptions();
-			break;
-		case '2': 
-			sneakAround();
-			break;
-		case '3': //Try to bribe the bad guy
-			var userBribe = (parseInt(prompt("How many gold pieces will you try to bribe him with?"))); 
-			while (isNaN(userBribe)) {
-				userBribe = (parseInt(prompt("Please use numbers only. How many gold pieces will you try to bribe him with?")));
-			};
-			
-			if (userBribe < badGuy[b].willAcceptBribe) {
-					window.alert(badGuy[b].name + " fell to the ground laughing! Apparently your bribe was not large enough. However, he is still "
-					+ "keeping your gold.");
-					codeNinja.gold -= userBribe;
-					fightOrFlee();
-			}
-			else {
-				document.write("You successfully bribed " + badGuy[b].name + " and you are on your way!");
-				codeNinja.gold -= userBribe;
-			};
-			break;
-		case '4':  //Display character properties
-			displayCharacterAttributes();
-			fightOrFlee();
-			break;
-	};
-};
+	function purchaseChoice() {
+	
+		var purchaseChoice = prompt(buildString() + "\n\n Would you like to purchase anything? y or n").toLowerCase();
+	
+		while (["y", "n"].indexOf(purchaseChoice) < 0) {  //make sure they made a valid y or n choice
+			window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.");
+			purchaseChoice = prompt(buildString() + "\n\n Would you like to purchase anything? y or n").toLowerCase();
+		};	
+	
+		switch(purchaseChoice) {  //route based on their choice
+			case 'y': window.alert("build out purchase function"); break;
+			case 'n': window.alert("move on"); break;
+		}; //close out Switch
+	}; //close out purchaseChoice
+	purchaseChoice();
+}; //close out ItemShop
 
-howManyScenarios(4); //if you change the argument, add additional switch cases
 
-//iterating through my howManyScenarios function to build out scenarios using a switch case
-for (i=0; i < scenario.length; i++) {
 
-	switch(scenario[i]) {
-		case 'Scenario 1':
-			window.alert("You run into a troll");
-			b = 0;
-			fightOrFlee();
-			break;
-		case 'Scenario 2':
-			window.alert("You find a store to purchase goods from");
-			displayItemShop();
-			break;
-		case 'Scenario 3': 
-			window.alert("You run into a ogre");
-			b = 1;
-			fightOrFlee();
-			break;
-		case 'Scenario 4':
-			window.alert("You run into a warewolf");
-			b = 2;
-			fightOrFlee();
-			break;
-		case 'Scenario 5':
-			window.alert("You run into a wizard");
-			b = 3;
-			fightOrFlee();
-			break;	
-	};
-}; 
 
 </script>
 
