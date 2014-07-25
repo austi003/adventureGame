@@ -1,7 +1,7 @@
 adventureGame
 =============
 
-Text based RPG game done in JavaScript to reinforce Functions, Loops, Objects, etc.
+Text based RPG game done primarily in JavaScript to reinforce Functions, Loops, Objects, etc. Using HTML/CSS for display along w/ jQuery. 
 
 I'm relatively new to JavaScript and have been following along in the CodeAcademy tutorials. I decided to make my own 
 text based RPG game that will make use of Functions, Objects, While loops, For loops, etc. 
