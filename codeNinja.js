@@ -190,7 +190,6 @@ howManyScenarios(4); //if you change the argument, add additional switch cases
 				break;
 			case 'Scenario 5':
 				alert("You run into a wizard");
-				b = 3;
 				break;	
 			}; //close out switch cases
 		}; //close out my for loop

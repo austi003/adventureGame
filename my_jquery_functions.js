@@ -3,3 +3,7 @@ $(document).ready(function(){
     $(".intro").hide();
   });
 });
+
+$(document).ready(function() {
+	//more code goes here
+});
