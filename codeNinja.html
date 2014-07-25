@@ -4,11 +4,14 @@
 
 <head> 
 	<title>CodeNinja Adventure Game</title>
-</head>
 
-<body>
-
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="my_jquery_functions.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="codeNinja.css">
+	
 <script>
+/*
 
 // create all classes & objects needed for my game; our hero, enemies, weapon choices, defense choices, items, etc.
 
@@ -109,7 +112,7 @@ function Scenario (name,storyLine,action) {    //action will be the function cal
 
 	var scenario = new Array ();
 	scenario[0] = new Scenario ("Scenario 1", "This scenario goes like this. You will face..." + badGuy[0].name);
-	scenario[1] = new Scenario ("Scenario 2", "This scenario goes like this. Itemshop", ItemShop());
+	scenario[1] = new Scenario ("Scenario 2", "This scenario goes like this. Itemshop");
 	scenario[2] = new Scenario ("Scenario 3", "This scenario goes like this. You will face..." + badGuy[1].name);
 	scenario[3] = new Scenario ("Scenario 4", "This scenario goes like this. You will face..." + badGuy[2].name);
 	scenario[4] = new Scenario ("Scenario 5", "This scenario goes like this. You will face..." + badGuy[3].name);
@@ -117,23 +120,24 @@ function Scenario (name,storyLine,action) {    //action will be the function cal
 
 // ALL FUNCTIONS THAT ARE PART OF THE ACTION FOR THE GAME
 
-//build out ItemShop object along with two methods to displayItems & purchase goods
+//build out ItemShop 
 function ItemShop() {
 	function buildString () {
 		var string = ("The following items are for sale: \n\n");  //build out string which will display all items in the store
 
-		for (i=0; i<potion.length; i++) {
-			string += "Item: " + potion[i].name + "\n"                   
-				+ "    Quantity in stock: " + potion[i].quantity + "\n" 
-				+ "    Price: " + potion[i].cost + " gold pieces \n"
-				+ "    Description: " + potion[i].description + "\n\n";
+		for (j=0; j<potion.length; j++) {
+			string += potion[j].name + "\n"                   
+				+ "    There are " + potion[j].quantity + " available \n" 
+				+ "    " + potion[j].cost + " gold pieces each \n"
+				+ "    This potion will " + potion[j].description + "\n\n";
 		};
 		return string;
 	};
 	
 	function purchaseChoice() {
 	
-		var purchaseChoice = prompt(buildString() + "\n\n Would you like to purchase anything? y or n").toLowerCase();
+		var purchaseChoice = prompt(buildString() + "\n\n Would you like to purchase anything? y or n");
+		//purchaseChoice = purchaseChoice.toLowerCase();
 	
 		while (["y", "n"].indexOf(purchaseChoice) < 0) {  //make sure they made a valid y or n choice
 			window.alert("Oops, you made a wrong choice. Please carefully review your choices and choose what you'd like to do.");
@@ -146,12 +150,78 @@ function ItemShop() {
 		}; //close out Switch
 	}; //close out purchaseChoice
 	purchaseChoice();
+	
+	function makePurchase () {
+		var string = ("What would you like to purchase? \n\n");  //build out string which will display all items in the store
+
+		for (j=0; j<potion.length; j++) {
+			string += ([j] + 1) + ")" + potion[j].name + "\n"                   
+				+ "    Quantity in stock: " + potion[j].quantity + "\n" 
+				+ "    Price: " + potion[j].cost + " gold pieces \n"
+				+ "    Description: " + potion[j].description + "\n\n";
+		};
+		return string;
+	}; //close out makePurchase
 }; //close out ItemShop
 
 
+var scenario = new Array();
+//simple function to create the number of scenarios
+function Scenario () {
+	
+	howManyScenarios = function(number) {
+			var i = 0;
+			for (i=0; i <= number; i++) {
+			scenario[i] = ("Scenario " + (1 + i));
+		};
+	};
+howManyScenarios(4); //if you change the argument, add additional switch cases
 
+	//iterating through my howManyScenarios function to build out scenarios using a switch case
+	createScenarios = function () {
+		var i = 0;
+		var ii = scenario.length;
+		
+		for (i=0; i < ii; i++) {
+		
+		switch(scenario[i]) {
+			case 'Scenario 1':
+				alert("You run into a troll");
+				b = 0;
+				break;
+			case 'Scenario 2':
+				alert("You find a store to purchase goods from");
+				ItemShop();
+				break;
+			case 'Scenario 3': 
+				alert("You run into a ogre");
+				b = 1;
+				break;
+			case 'Scenario 4':
+				alert("You run into a warewolf");
+				b = 2;
+				break;
+			case 'Scenario 5':
+				alert("You run into a wizard");
+				b = 3;
+				break;	
+			}; //close out switch cases
+		}; //close out my for loop
+	}; //close out createScenarios function	
+	createScenarios();
+}; //close out Scenario function
+*/
 
 </script>
+
+</head>
+
+<body>
+	
+<img class="intro" src="codeNinja.jpg" />
+
+<button>Start Game!</button>
+
 
 </body>
 
