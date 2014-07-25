@@ -1,11 +1,29 @@
 IMG.intro {
 	display: block;
 	margin-left: auto;
-	margin-right: auto
+	margin-right: auto;
+	max-width: 100%;
 }
 	
-Button.start Button.exit {
-	display: block;
+.button_container {
+	width: 20%;
+	margin-top: 15%;
 	margin-left: auto;
-	margin-right: auto
+	margin-right: auto;
+}
+
+.start, .exit {
+	margin: .0125%;
+	max-width: 250px;
+	min-width: 50px;
+}
+
+.start {
+	float: left;
+	width: 35%;
+}
+
+.exit {
+	float: right;
+	width: 35%;
 }
