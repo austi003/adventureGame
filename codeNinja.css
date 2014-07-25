@@ -1,15 +1,21 @@
+IMG, .story, .button_container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 IMG.intro {
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin-top: 5%;
 	max-width: 100%;
 }
-	
+
+.story {
+	width: 1000px;
+}
+
 .button_container {
 	width: 20%;
-	margin-top: 15%;
-	margin-left: auto;
-	margin-right: auto;
+	margin-top: 20%;
 }
 
 .start, .exit {

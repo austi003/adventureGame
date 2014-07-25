@@ -1,9 +1,11 @@
-$(document).ready(function(){
-  $("button").click(function(){
-    $(".intro").hide();
+$(document).ready(function (){
+  $(".start").click(function() {
+  		_begin();
   });
 });
 
-$(document).ready(function() {
-	//more code goes here
+$(document).ready(function () {
+	$(".exit").click(function() {
+		window.close();
+	});
 });

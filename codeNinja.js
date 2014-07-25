@@ -1,4 +1,14 @@
-<script>
+// function to begin game; called when user clicks "start game" button
+function _begin () {
+	alert("Welcome young CodeNinja! \n\nThanks for playing the CodeNinja Adventure Game!");
+	alert("How the game works: \n\nCodeNinja is a text based RPG game that follows our hero," 
+			+ " young CodeNinja. As the story progresses, you will be provided with various scenarios. "
+			+ "As each scenario presents itself, you will be provided with a few possible alternative actions to choose from. \n\n"
+			+ "Hope you enjoy!"
+	);
+
+	var userName = prompt("What would you like our young CodeNinja to be named?");
+};
 
 // create all classes & objects needed for my game; our hero, enemies, weapon choices, defense choices, items, etc.
 
@@ -194,8 +204,5 @@ howManyScenarios(4); //if you change the argument, add additional switch cases
 			}; //close out switch cases
 		}; //close out my for loop
 	}; //close out createScenarios function	
-	createScenarios();
+	//createScenarios();
 }; //close out Scenario function
-
-
-</script>
