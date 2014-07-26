@@ -21,7 +21,7 @@ $(document).ready(function(){
 						break;
 						
 			// user presses the "e" key
-			case 101:	window.close();
+			case 101:	window.close(); //this is not working yet
 						break;
 		}
 	});
@@ -29,8 +29,11 @@ $(document).ready(function(){
 
 $(document).ready(function (){
   $("#start").click(function() {
-  		_begin();
-  });
+  		$(".container").css("display","none");
+		$("#intro").slideDown("slow");
+		
+		_begin();
+	});
 });
 
 $(document).ready(function () {
