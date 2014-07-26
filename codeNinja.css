@@ -1,35 +1,33 @@
-IMG, .story, .button_container {
+IMG, .container, #start {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-IMG.intro {
+#banner {
 	display: block;
-	margin-top: 5%;
+	margin-top: 3%;
 	max-width: 100%;
 }
 
-.story {
-	width: 1000px;
+.container {
+	width: 50%;
+	height: 500px;
+	margin: 30px auto;
+	padding: 10px 20px;
+	background: #15add1;
+	color: #ffffff;
 }
 
-.button_container {
+#start {
+	vertical-align: middle;
+	background: #007aa5;
 	width: 20%;
-	margin-top: 20%;
-}
-
-.start, .exit {
-	margin: .0125%;
-	max-width: 250px;
 	min-width: 50px;
-}
-
-.start {
-	float: left;
-	width: 35%;
+	text-align: center;
 }
 
 .exit {
 	float: right;
-	width: 35%;
+	color: black;
 }
+	
