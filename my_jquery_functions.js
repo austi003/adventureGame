@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$("#header").css("display", "none");
 	$("#home").css("display","block");
 	
-	// makes the navigation work after all containers have bee hidden 
+	// makes the navigation work after all containers have been hidden 
 	showViaLink($("ul#navigation li a"));
 	
 	// listens for any navigation keypress activity
@@ -27,18 +27,41 @@ $(document).ready(function(){
 	});
 });
 
+// when you click the start game button, takes you to the intro <div>
 $(document).ready(function (){
   $("#start").click(function() {
   		$(".container").css("display","none");
 		$("#intro").slideDown("slow");
-		
-		_begin();
+		$("#header").css("display","block");
 	});
 });
 
+//take character name from input box and input into all "character" class div's 
 $(document).ready(function () {
-	$("#exit").click(function() {
-		window.close();
+	$("#submit_character_name").click(function () {
+	var input = $('input[name=character_name]').val();  // get value from input field 
+	var x = document.getElementsByClassName("character"); //create array of class objects with character name
+    var y = x.length;
+   	// iterate through each instance of class "character" and set value equal to the name provided in the input field
+   	for (i=0; i<y; i++) {
+    		x[i].innerHTML = (input);
+    };
+ });
+});
+
+// when you click the next_1 button, takes you from intro <div> to opener <div>
+$(document).ready(function (){
+  $("#next_1").click(function() {
+  		$(".container").css("display","none");
+		$("#opener").slideDown("slow");	
+	});
+});
+
+// when you click the #restart button, takes you to the #home <div>
+$(document).ready(function (){
+	$("#restart").click(function() {
+  		$(".container").css("display","none");
+		$("#home").slideDown("slow");	
 	});
 });
 
@@ -54,9 +77,19 @@ function showViaLink(array)
 	{	
 		$(this).click(function()
 		{
-			var target = $(this).attr("href");
 			$(".container").css("display","none");
-			$(target).slideDown("slow");
+			
+			var target = $(this).attr("href");
+				if (target === '#status') {
+					alert($('#my_name').innerHTML = (codeNinja.name));
+					$('#my_health').innerHTML = (codeNinja.health);
+					$('#my_weapon').innerHTML = (codeNinja.weapon.name);
+					$('#my_defense').innerHTML = (codeNinja.defense.name);
+					$('#my_gold').innerHTML = (codeNinja.gold);
+					$('#my_items').innerHTML = (codeNinja.items.name);
+				}
+			$(target).slideDown("slow");	
 		});
 	});
 }
+

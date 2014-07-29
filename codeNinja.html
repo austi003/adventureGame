@@ -14,33 +14,83 @@
 
 <body>
 	
-<div><img id="banner" src="codeNinja.jpg" /></div>
+<div><img id="banner" src="codeNinja.jpg" /></div> <!-- Image used as a banner at the top -->
 
+<!-- Header links that will allow certain naviationgal features -->
 <div id="header">
 		<ul id="navigation">
 			<li><a href="#gameWindow">Resume Game ( r )</a></li>
 			<li><a href="#status">Character Status ( s )</a></li>
-			<li><a href id="exit">Exit Game ( e )</a></li>
+			<li><a href="#exit">Exit Game</a></li>
 		</ul>
 </div>
 
+<!-- Main start button to start the game -->
 <div id="home" class="container">
 		<button id="start">Start Game!</button>
 </div>
-		
+
+<div id="status" class="container">
+		<p id="my_name">Name</p>
+		<p id="my_health">Health</p>
+		<p id="my_weapon">Weapon</p>
+		<p id="my_defense">Defense</p>
+		<p id="my_gold">Gold</p>
+		<p id="my_items">Special Items</p>
+</div>
+
+<!-- Intro to game; explain how it works -->		
 <div id="intro" class="container">
 		<p>Welcome young CodeNinja! Thanks for playing the CodeNinja Adventure Game!</p>
 		<p>CodeNinja is a text based RPG game that follows our hero, young CodeNinja.  As the story progresses, 
 			you will be provided with various scenarios.  As each scenario presents itself, 
 			you will be provided with a few possible alternative actions to choose from. <br /><br />Hope you enjoy!</p>
-		<button>Next</button>	
+		<button id="next_intro">Next</button>	 <!-- all buttons that advance a screen will be named "next_" followed by the div ID value -->
 </div>
 
-<div id="status" class="container">
-	<div id="attributes">
-		
-	</div>
+<!-- Opening scene of the game -->
+<div id="opener" class="container">
+	<!-- Create a submit button here to capture the character name -->
+	<p>What would you like our hero to be named?</p>
+	<input type="text" name="character_name"/>
+	<button id="submit_character_name">Submit</button>
+	<p>As our story begins, we find our young hero<div class="character"> </div> as he begins his weekly journey to see the wise & powerful Grand Ninja.
+		Today appears to be like any other day as<div class="character"> </div> sets out on a 5 mile hike through the Miramar forest across the great land of Oz.
+		What our unsuspecting character<div class="character"> </div> does not realize though, is that the forest has just been overrun with dark & dangerous creatures.
+		With nothing but a sword in hand and 200 Gold pieces, we join<div class="character"> </div> for a CodeNinja adventure!</p>
+		<button id="next_opener">Proceed</button>	 <!-- all buttons that advance a screen will be named "next_" followed by the div ID value -->
+</div>
+
+
+
+
+<!-- div that will be used for each battle scene -->
+<div id="battle" class="container">
 	
+</div>
+
+<!-- build out each scenario of the game -->
+<div id="scenario_1" class="container">
+	<p> Scenario 1</p>
+	<button>Fight</button>
+	<button>Sneak Around</button>
+	<button>Bribe</button>
+</div>
+
+<div id="scenario_2" class="container">
+	<p> Scenario 2</p>
+	<button>Fight</button>
+	<button>Sneak Around</button>
+	<button>Bribe</button>
+</div>
+
+
+
+	
+<!-- If user selects exit game, allows you to restart -->
+<div id="exit" class="container">
+		<p>Sorry to see you go. Thanks for playing! </p>
+		<button id="restart">Play Again</button>
 </div>
 	
 <p id="author">Created by: <span>Shaun Austin</span></p>

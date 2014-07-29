@@ -1,8 +1,3 @@
-// function to begin game; called when user clicks "start game" button
-function _begin () {
-	var userName = prompt("What would you like our young CodeNinja to be named?");
-};
-
 // create all classes & objects needed for my game; our hero, enemies, weapon choices, defense choices, items, etc.
 
 //create Item superconstructor; used for other constructors to inherit from
@@ -68,7 +63,7 @@ function Character(name) {
 		health: [5,5],
 		weapon: weapon[0],
 		defense: defense[0],  
-		specialItems: [potion[0]],
+		items: [potion[0],],
 		gold: 200
 	};
 	codeNinja.prototype = new Character();
