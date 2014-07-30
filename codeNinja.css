@@ -19,6 +19,7 @@ IMG, .container {
 	color: #black;
 	font-family: "Comic Sans MS", cursive, sans-serif;
 	font-size: large;
+	border: 1px solid black;
 }
 
 #header
@@ -58,6 +59,7 @@ IMG, .container {
 }
 
 button {
+   display: inline;
    position: absolute; top: 40%; left: 42%; height: 10%;
    border-top: 1px solid #96d1f8;
    background: #65a9d7;

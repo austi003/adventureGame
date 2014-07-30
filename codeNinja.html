@@ -31,12 +31,12 @@
 </div>
 
 <div id="status" class="container">
-		<p id="my_name">Name</p>
-		<p id="my_health">Health</p>
-		<p id="my_weapon">Weapon</p>
-		<p id="my_defense">Defense</p>
-		<p id="my_gold">Gold</p>
-		<p id="my_items">Special Items</p>
+		<p id="my_name"> </p>
+		<p>Current Health: <span id="my_health"> </span></p>
+		<p>Weapon: <span id="my_weapon"> </span></p>
+		<p>Defense: <span id="my_defense"> </span></p>
+		<p>Gold: <span id="my_gold"> </span></p>
+		<p>Special Items: <span id="my_items"> </span></p>
 </div>
 
 <!-- Intro to game; explain how it works -->		
@@ -66,20 +66,18 @@
 
 <!-- div that will be used for each battle scene -->
 <div id="battle" class="container">
-	
+	<button id="attack">Attack!</button>
 </div>
 
 <!-- build out each scenario of the game -->
 <div id="scenario_1" class="container">
 	<p> Scenario 1</p>
-	<button>Fight</button>
-	<button>Sneak Around</button>
-	<button>Bribe</button>
+	<button class="fight">Fight</button>
 </div>
 
 <div id="scenario_2" class="container">
 	<p> Scenario 2</p>
-	<button>Fight</button>
+	<button class="fight">Fight</button>
 	<button>Sneak Around</button>
 	<button>Bribe</button>
 </div>

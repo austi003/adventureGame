@@ -149,48 +149,43 @@ function ItemShop() {
 	}; //close out makePurchase
 }; //close out ItemShop
 
-
-var scenario = new Array();
-//simple function to create the number of scenarios
-function Scenario () {
-	
-	howManyScenarios = function(number) {
-			var i = 0;
-			for (i=0; i <= number; i++) {
-			scenario[i] = ("Scenario " + (1 + i));
-		};
+b=0;  //global variable for deciding which bad guy to pull - needs to be in better spot, just making this work for now
+// fight scene for each bad guy you encounter
+var whoHitWho = function () {
+	if (codeNinja.health[0] > 0 && badGuy[b].health > 0) {   //change badGuy[0] back to variable b once you define it
+		var codeNinjaPower = Math.floor((Math.random() * codeNinja.attackPower) + 1);
+		var badGuyPower = Math.floor((Math.random() * badGuy[b].attackPower) + 1);
+		var lifeLost = 0;
+		
+		if (codeNinjaPower > badGuyPower) {
+			lifeLost = parseInt(codeNinjaPower - badGuyPower);
+			badGuy[b].health -= lifeLost;
+			window.alert("Congrats you landed a hit! " + badGuy[b].name 
+						+ " lost " + lifeLost + " point(s) of his life.");
+		} 
+		else if (codeNinjaPower == badGuyPower) {
+			window.alert("You both lunged and clashed swords. No damage done.");
+		} 
+		else {
+			lifeLost = parseInt(badGuyPower - codeNinjaPower);
+			codeNinja.health[0] -= lifeLost;
+			window.alert("Ouch, " + badGuy[b].name + " landed a hit." 
+						+ " You lost " + lifeLost + " point(s) of your health.");
+		}; 
 	};
-howManyScenarios(4); //if you change the argument, add additional switch cases
+	didAnybodyWin();
+};
 
-	//iterating through my howManyScenarios function to build out scenarios using a switch case
-	createScenarios = function () {
-		var i = 0;
-		var ii = scenario.length;
-		
-		for (i=0; i < ii; i++) {
-		
-		switch(scenario[i]) {
-			case 'Scenario 1':
-				alert("You run into a troll");
-				b = 0;
-				break;
-			case 'Scenario 2':
-				alert("You find a store to purchase goods from");
-				ItemShop();
-				break;
-			case 'Scenario 3': 
-				alert("You run into a ogre");
-				b = 1;
-				break;
-			case 'Scenario 4':
-				alert("You run into a warewolf");
-				b = 2;
-				break;
-			case 'Scenario 5':
-				alert("You run into a wizard");
-				break;	
-			}; //close out switch cases
-		}; //close out my for loop
-	}; //close out createScenarios function	
-	//createScenarios();
-}; //close out Scenario function
+var didAnybodyWin = function () {
+	if (codeNinja.health[0] <= 0) {
+			window.alert("You lost the battle. Our hero is dead."); 
+			window.alert("Thank you for playing! To play again, hit refresh on your browser window.");
+		i = scenario.length + 1;
+	}
+	else if (badGuy[b].health <= 0) {
+		window.alert("You win");
+	}
+	/*else {
+		inBattleOptions();
+	};*/
+};

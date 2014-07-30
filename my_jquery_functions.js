@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	// hides all DIVs with the CLASS container
 	// and displays the one with the ID 'home' only
-	$(".container").css("display","none");
+	//$(".container").css("display","none");
 	$("#header").css("display", "none");
 	$("#home").css("display","block");
 	
@@ -28,6 +28,7 @@ $(document).ready(function(){
 });
 
 // when you click the start game button, takes you to the intro <div>
+/*
 $(document).ready(function (){
   $("#start").click(function() {
   		$(".container").css("display","none");
@@ -35,6 +36,7 @@ $(document).ready(function (){
 		$("#header").css("display","block");
 	});
 });
+*/
 
 //take character name from input box and input into all "character" class div's 
 $(document).ready(function () {
@@ -50,21 +52,49 @@ $(document).ready(function () {
 });
 
 // when you click the next_1 button, takes you from intro <div> to opener <div>
+/*
 $(document).ready(function (){
-  $("#next_1").click(function() {
+  $("#next_intro").click(function() {
   		$(".container").css("display","none");
 		$("#opener").slideDown("slow");	
 	});
 });
+*/
+
+// when you click the next_opener button, takes you from opener <div> to scenario 1 <div>
+/*
+$(document).ready(function (){
+  $("#next_opener").click(function() {
+  		$(".container").css("display","none");
+		$("#scenario_1").slideDown("slow");	
+	});
+}); */
 
 // when you click the #restart button, takes you to the #home <div>
+/*
 $(document).ready(function (){
 	$("#restart").click(function() {
   		$(".container").css("display","none");
 		$("#home").slideDown("slow");	
 	});
-});
+});  */
 
+// when you click the .fight button, takes you to the #battle <div>
+/*
+$(document).ready(function (){
+	$(".fight").click(function() {
+  		$(".container").css("display","none");
+		$("#battle").slideDown("slow");	
+	});
+});   */
+
+//When on battle screen, if you click attack button, initiates the whoHitWho function
+$(document).ready(function () {
+	$('#attack').click(function () {
+		whoHitWho();
+	});
+});
+/*
 function showViaKeypress(element_id)
 {
 	$(".container").css("display","none");
@@ -92,4 +122,4 @@ function showViaLink(array)
 		});
 	});
 }
-
+*/
