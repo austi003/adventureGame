@@ -28,6 +28,7 @@
 <!-- Main start button to start the game -->
 <div id="home" class="container">
 		<button id="start">Start Game!</button>
+		<p class="comment">(Main screen when game loads)</p>
 </div>
 
 <div id="status" class="container">
@@ -37,6 +38,7 @@
 		<p>Defense: <span id="my_defense"> </span></p>
 		<p>Gold: <span id="my_gold"> </span></p>
 		<p>Special Items: <span id="my_items"> </span></p>
+		<p class="comment">(Screen to display character attributes when called by user)</p>
 </div>
 
 <!-- Intro to game; explain how it works -->		
@@ -46,6 +48,7 @@
 			you will be provided with various scenarios.  As each scenario presents itself, 
 			you will be provided with a few possible alternative actions to choose from. <br /><br />Hope you enjoy!</p>
 		<button id="next_intro">Next</button>	 <!-- all buttons that advance a screen will be named "next_" followed by the div ID value -->
+		<p class="comment">(Introduction to how game works)</p>
 </div>
 
 <!-- Opening scene of the game -->
@@ -59,36 +62,56 @@
 		What our unsuspecting character<div class="character"> </div> does not realize though, is that the forest has just been overrun with dark & dangerous creatures.
 		With nothing but a sword in hand and 200 Gold pieces, we join<div class="character"> </div> for a CodeNinja adventure!</p>
 		<button id="next_opener">Proceed</button>	 <!-- all buttons that advance a screen will be named "next_" followed by the div ID value -->
-</div>
-
-
-
-
-<!-- div that will be used for each battle scene -->
-<div id="battle" class="container">
-	<button id="attack">Attack!</button>
+		<p class="comment">(Opening storyline of the game)</p>
 </div>
 
 <!-- build out each scenario of the game -->
 <div id="scenario_1" class="container">
 	<p> Scenario 1</p>
 	<button class="fight">Fight</button>
+	<p class="comment">(Scenario 1)</p>
 </div>
 
 <div id="scenario_2" class="container">
 	<p> Scenario 2</p>
 	<button class="fight">Fight</button>
-	<button>Sneak Around</button>
-	<button>Bribe</button>
+	<p class="comment">(Scenario 2)</p>
 </div>
 
+<div id="scenario_3" class="container">
+	<p> Scenario 3</p>
+	<button class="fight">Fight</button>
+	<p class="comment">(Scenario 3)</p>
+</div>
 
+<div id="scenario_4" class="container">
+	<p> Scenario 4</p>
+	<button class="fight">Fight</button>
+	<p class="comment">(Scenario 4)</p>
+</div>
 
-	
+<div id="scenario_5" class="container">
+	<p> Scenario 5</p>
+	<button class="fight">Fight</button>
+	<p class="comment">(Main Boss)</p>
+</div>
+
+<!-- div that will be used for each battle scene -->
+<div id="battle" class="container">
+	<button id="attack">Attack!</button>
+	<p class="comment">(Battle scene)</p>
+</div>
+
+<!-- div that will be used for displaying the item shop -->
+<div id="itemShop" class="container">
+	<p class="comment">(Item Shop)</p>
+</div>
+
 <!-- If user selects exit game, allows you to restart -->
 <div id="exit" class="container">
 		<p>Sorry to see you go. Thanks for playing! </p>
 		<button id="restart">Play Again</button>
+		<p class="comment">(Exit Game or Restart)</p>
 </div>
 	
 <p id="author">Created by: <span>Shaun Austin</span></p>
