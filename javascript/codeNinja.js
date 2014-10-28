@@ -59,8 +59,9 @@ function Character(name) {
 
 	//create our hero & set initial properties
 	var codeNinja = {
-		name: " Young CodeNinja",
+		name: "Young CodeNinja",
 		health: [5,5],
+		attackPower: 2,
 		weapon: weapon[0],
 		defense: defense[0],  
 		items: [potion[0],],
@@ -152,10 +153,16 @@ function ItemShop() {
 b=0;  //global variable for deciding which bad guy to pull - needs to be in better spot, just making this work for now
 // fight scene for each bad guy you encounter
 var whoHitWho = function () {
+	window.alert("CodeNinja Health is: " + codeNinja.health[0]);
+	window.alert("BadGuy Health is: " + badGuy[b].health);
+	
 	if (codeNinja.health[0] > 0 && badGuy[b].health > 0) {   //change badGuy[0] back to variable b once you define it
 		var codeNinjaPower = Math.floor((Math.random() * codeNinja.attackPower) + 1);
 		var badGuyPower = Math.floor((Math.random() * badGuy[b].attackPower) + 1);
 		var lifeLost = 0;
+		
+		window.alert("CodeNinja Power is: " + codeNinjaPower);
+		window.alert("BadGuy Power is: " + badGuyPower);
 		
 		if (codeNinjaPower > badGuyPower) {
 			lifeLost = parseInt(codeNinjaPower - badGuyPower);
@@ -173,7 +180,6 @@ var whoHitWho = function () {
 						+ " You lost " + lifeLost + " point(s) of your health.");
 		}; 
 	};
-	didAnybodyWin();
 };
 
 var didAnybodyWin = function () {
@@ -185,7 +191,12 @@ var didAnybodyWin = function () {
 	else if (badGuy[b].health <= 0) {
 		window.alert("You win");
 	}
-	/*else {
-		inBattleOptions();
-	};*/
+	else { 
+		window.alert("What would you like to do next?");
+	}
+};
+
+var checkHealth = function () {
+	window.alert(codeNinja.health);
+	window.alert(badGuy[b].health);
 };

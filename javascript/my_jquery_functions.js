@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	// hides all DIVs with the CLASS container
 	// and displays the one with the ID 'home' only
-	//$(".container").css("display","none");
-	//$("#header").css("display", "none");
+	$(".container").css("display","none");
+	$("#header").css("display", "none");
 	$("#home").css("display","block");
 	
 	// makes the navigation work after all containers have been hidden 
@@ -21,7 +21,7 @@ $(document).ready(function(){
 						break;
 						
 			// user presses the "e" key
-			case 101:	window.close(); //this is not working yet
+			case 101:	showViaKeypress("#exit"); 
 						break;
 		}
 	});
@@ -32,7 +32,6 @@ $(document).ready(function (){
   $("#start").click(function() {
   		$(".container").css("display","none");
 		$("#intro").slideDown("slow");
-		$("#header").css("display","block");
 	});
 });
 
@@ -66,38 +65,51 @@ $(document).ready(function (){
   $("#next_opener").click(function() {
   		$(".container").css("display","none");
 		$("#scenario_1").slideDown("slow");	
+		$("#header").css("display","block");
+		$("#resume_game").css("display", "none");
 		scenario_1_story.innerHTML = scenario[0].storyLine;
-		$(".actions").css("display","none");
+		$(".attack, .use_item, .flee_battle").css("display","none");
 	});
 }); 
 
 // when you click the .fight button, displays "action" buttons
 $(document).ready(function (){
 	$(".fight").click(function() {
-  		$(".actions").css("display","inline");
+		$(".fight, .avoid").css("display", "none");
+  		$(".attack, .use_item, .flee_battle").css("display","inline");
 	});
 });   
 
 //When on battle screen, if you click attack button, initiates the whoHitWho function
 $(document).ready(function () {
-	$('#attack').click(function () {
+	$('.attack').click(function () {
 		whoHitWho();
+		didAnybodyWin();
+		checkHealth();
 	});
 });
 
 // when you click the #restart button, takes you to the #home <div>
-$(document).ready(function (){
+$(document).ready(function () {
 	$("#restart").click(function() {
   		$(".container").css("display","none");
 		$("#home").slideDown("slow");	
 	});
 });  
 
-function showViaKeypress(element_id)
-{
+// when character status screen loads, shows the proper attributes
+$(document).ready(function () {
+	my_health.innerHTML = (codeNinja.health);
+	my_weapon.innerHTML = (codeNinja.weapon.name);
+	my_defense.innerHTML = (codeNinja.defense.name);
+	my_gold.innerHTML = (codeNinja.gold);
+	my_items.innerHTML = (codeNinja.items.name);
+});
+
+function showViaKeypress(element_id) {
 	$(".container").css("display","none");
 	$(element_id).slideDown("slow");
-}
+};
 
 function showViaLink(array)
 {
@@ -109,7 +121,6 @@ function showViaLink(array)
 			
 			var target = $(this).attr("href");
 				if (target === '#status') {
-					alert($('#my_name').innerHTML = (codeNinja.name));
 					$('#my_health').innerHTML = (codeNinja.health);
 					$('#my_weapon').innerHTML = (codeNinja.weapon.name);
 					$('#my_defense').innerHTML = (codeNinja.defense.name);
