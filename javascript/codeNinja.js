@@ -190,3 +190,10 @@ var didAnybodyWin = function () {
 	}
 };
 
+var update_status = function () {
+	my_health.innerHTML = (codeNinja.health);
+	my_weapon.innerHTML = (codeNinja.weapon.name);
+	my_defense.innerHTML = (codeNinja.defense.name);
+	my_gold.innerHTML = (codeNinja.gold);
+	my_items.innerHTML = (codeNinja.items.name);
+};

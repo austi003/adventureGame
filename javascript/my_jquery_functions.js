@@ -17,7 +17,8 @@ $(document).ready(function(){
 						break;	
 						
 			// user presses the "s" key
-			case 115:	showViaKeypress("#status");
+			case 115:	update_status();
+						showViaKeypress("#status");
 						break;
 						
 			// user presses the "e" key
@@ -98,11 +99,9 @@ $(document).ready(function () {
 
 // when character status screen loads, shows the proper attributes
 $(document).ready(function () {
-	my_health.innerHTML = (codeNinja.health);
-	my_weapon.innerHTML = (codeNinja.weapon.name);
-	my_defense.innerHTML = (codeNinja.defense.name);
-	my_gold.innerHTML = (codeNinja.gold);
-	my_items.innerHTML = (codeNinja.items.name);
+	$("#character_status").click(function () {
+		update_status();
+	});
 });
 
 function showViaKeypress(element_id) {
