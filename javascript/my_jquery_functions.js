@@ -85,7 +85,6 @@ $(document).ready(function () {
 	$('.attack').click(function () {
 		whoHitWho();
 		didAnybodyWin();
-		checkHealth();
 	});
 });
 
