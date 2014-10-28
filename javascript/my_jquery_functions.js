@@ -2,7 +2,7 @@ $(document).ready(function(){
 	// hides all DIVs with the CLASS container
 	// and displays the one with the ID 'home' only
 	//$(".container").css("display","none");
-	$("#header").css("display", "none");
+	//$("#header").css("display", "none");
 	$("#home").css("display","block");
 	
 	// makes the navigation work after all containers have been hidden 
@@ -28,7 +28,6 @@ $(document).ready(function(){
 });
 
 // when you click the start game button, takes you to the intro <div>
-/*
 $(document).ready(function (){
   $("#start").click(function() {
   		$(".container").css("display","none");
@@ -36,11 +35,22 @@ $(document).ready(function (){
 		$("#header").css("display","block");
 	});
 });
-*/
+
+// when you click the next_intro button, takes you from intro <div> to createName <div>
+$(document).ready(function (){
+  $("#next_intro").click(function() {
+  		$(".container").css("display","none");
+		$("#createName").slideDown("slow");	
+	});
+});
 
 //take character name from input box and input into all "character" class div's 
 $(document).ready(function () {
 	$("#submit_character_name").click(function () {
+	// first advance the screen to your "opener" <div>
+	$(".container").css("display","none");
+	$("#opener").slideDown("slow");		
+	// then take value submitted by user and insert into the appropriate fields
 	var input = $('input[name=character_name]').val();  // get value from input field 
 	var x = document.getElementsByClassName("character"); //create array of class objects with character name
     var y = x.length;
@@ -51,42 +61,22 @@ $(document).ready(function () {
  });
 });
 
-// when you click the next_1 button, takes you from intro <div> to opener <div>
-/*
-$(document).ready(function (){
-  $("#next_intro").click(function() {
-  		$(".container").css("display","none");
-		$("#opener").slideDown("slow");	
-	});
-});
-*/
-
 // when you click the next_opener button, takes you from opener <div> to scenario 1 <div>
-/*
 $(document).ready(function (){
   $("#next_opener").click(function() {
   		$(".container").css("display","none");
 		$("#scenario_1").slideDown("slow");	
+		scenario_1_story.innerHTML = scenario[0].storyLine;
+		$(".actions").css("display","none");
 	});
-}); */
+}); 
 
-// when you click the #restart button, takes you to the #home <div>
-/*
-$(document).ready(function (){
-	$("#restart").click(function() {
-  		$(".container").css("display","none");
-		$("#home").slideDown("slow");	
-	});
-});  */
-
-// when you click the .fight button, takes you to the #battle <div>
-/*
+// when you click the .fight button, displays "action" buttons
 $(document).ready(function (){
 	$(".fight").click(function() {
-  		$(".container").css("display","none");
-		$("#battle").slideDown("slow");	
+  		$(".actions").css("display","inline");
 	});
-});   */
+});   
 
 //When on battle screen, if you click attack button, initiates the whoHitWho function
 $(document).ready(function () {
@@ -94,7 +84,15 @@ $(document).ready(function () {
 		whoHitWho();
 	});
 });
-/*
+
+// when you click the #restart button, takes you to the #home <div>
+$(document).ready(function (){
+	$("#restart").click(function() {
+  		$(".container").css("display","none");
+		$("#home").slideDown("slow");	
+	});
+});  
+
 function showViaKeypress(element_id)
 {
 	$(".container").css("display","none");
@@ -122,4 +120,4 @@ function showViaLink(array)
 		});
 	});
 }
-*/
+

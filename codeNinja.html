@@ -4,17 +4,15 @@
 
 <head> 
 	<title>CodeNinja Adventure Game</title>
-
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="my_jquery_functions.js"></script>
-	<script src="codeNinja.js"></script>	
-	<link rel="stylesheet" type="text/css" href="codeNinja.css">
-
+	<script src="javascript/codeNinja.js"></script>
+	<script src="javascript/my_jquery_functions.js"></script>	
+	<link rel="stylesheet" type="text/css" href="css/codeNinja.css">
 </head>
 
 <body>
 	
-<div><img id="banner" src="codeNinja.jpg" /></div> <!-- Image used as a banner at the top -->
+<div><img id="banner" src="images/codeNinja.jpg" /></div> <!-- Image used as a banner at the top -->
 
 <!-- Header links that will allow certain naviationgal features -->
 <div id="header">
@@ -31,6 +29,7 @@
 		<p class="comment">(Main screen when game loads)</p>
 </div>
 
+<!-- Character Status screen -->
 <div id="status" class="container">
 		<p id="my_name"> </p>
 		<p>Current Health: <span id="my_health"> </span></p>
@@ -51,15 +50,19 @@
 		<p class="comment">(Introduction to how game works)</p>
 </div>
 
-<!-- Opening scene of the game -->
-<div id="opener" class="container">
+<!-- Name our "hero" character -->
+<div id="createName" class="container">
 	<!-- Create a submit button here to capture the character name -->
 	<p>What would you like our hero to be named?</p>
 	<input type="text" name="character_name"/>
 	<button id="submit_character_name">Submit</button>
-	<p>As our story begins, we find our young hero<div class="character"> </div> as he begins his weekly journey to see the wise & powerful Grand Ninja.
+</div>
+
+<!-- Opening scene of the game -->
+<div id="opener" class="container">
+	<p>As our story begins, we find our young hero<div class="character"> </div> as he begins his weekly journey to see the wise and powerful Grand Ninja.
 		Today appears to be like any other day as<div class="character"> </div> sets out on a 5 mile hike through the Miramar forest across the great land of Oz.
-		What our unsuspecting character<div class="character"> </div> does not realize though, is that the forest has just been overrun with dark & dangerous creatures.
+		What our unsuspecting character<div class="character"> </div> does not realize though, is that the forest has just been overrun with dark and dangerous creatures.
 		With nothing but a sword in hand and 200 Gold pieces, we join<div class="character"> </div> for a CodeNinja adventure!</p>
 		<button id="next_opener">Proceed</button>	 <!-- all buttons that advance a screen will be named "next_" followed by the div ID value -->
 		<p class="comment">(Opening storyline of the game)</p>
@@ -67,8 +70,12 @@
 
 <!-- build out each scenario of the game -->
 <div id="scenario_1" class="container">
-	<p> Scenario 1</p>
+	<p id="scenario_1_story"> </p>
 	<button class="fight">Fight</button>
+	<button class="avoid">Avoid</button>
+	<button class="actions" id="attack">Attack</button>
+	<button class="actions" id="use_item">Items</button>
+	<button class="actions" id="fleeBattle">Run</button>
 	<p class="comment">(Scenario 1)</p>
 </div>
 
@@ -94,12 +101,6 @@
 	<p> Scenario 5</p>
 	<button class="fight">Fight</button>
 	<p class="comment">(Main Boss)</p>
-</div>
-
-<!-- div that will be used for each battle scene -->
-<div id="battle" class="container">
-	<button id="attack">Attack!</button>
-	<p class="comment">(Battle scene)</p>
 </div>
 
 <!-- div that will be used for displaying the item shop -->
