@@ -5,8 +5,9 @@
 <head> 
 	<title>CodeNinja Adventure Game</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="javascript/codeNinja.js"></script>
-	<script src="javascript/my_jquery_functions.js"></script>	
+	<script src="javascript/codeNinja_objects.js"></script>
+	<script src="javascript/codeNinja_jQuery.js"></script>	
+	<script src="javascript/codeNinja_action.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/codeNinja.css">
 </head>
 
@@ -74,7 +75,7 @@
 	<button class="fight">Fight</button>
 	<button class="avoid">Avoid</button>
 	<button class="attack">Attack</button>
-	<button class="use_item">Items</button>
+	<button class="item_list">Items</button>
 	<button class="flee_battle">Run</button>
 	<p class="comment">(Scenario 1)</p>
 </div>
@@ -84,7 +85,7 @@
 	<button class="fight">Fight</button>
 	<button class="avoid">Avoid</button>
 	<button class="attack">Attack</button>
-	<button class="use_item">Items</button>
+	<button class="item_list">Items</button>
 	<button class="flee_battle">Run</button>
 	<p class="comment">(Scenario 2)</p>
 </div>
@@ -94,7 +95,7 @@
 	<button class="fight">Fight</button>
 	<button class="avoid">Avoid</button>
 	<button class="attack">Attack</button>
-	<button class="use_item">Items</button>
+	<button class="item_list">Items</button>
 	<button class="flee_battle">Run</button>
 	<p class="comment">(Scenario 3)</p>
 </div>
@@ -104,7 +105,7 @@
 	<button class="fight">Fight</button>
 	<button class="avoid">Avoid</button>
 	<button class="attack">Attack</button>
-	<button class="use_item">Items</button>
+	<button class="item_list">Items</button>
 	<button class="flee_battle">Run</button>
 	<p class="comment">(Scenario 4)</p>
 </div>
@@ -114,7 +115,7 @@
 	<button class="fight">Fight</button>
 	<button class="avoid">Avoid</button>
 	<button class="attack">Attack</button>
-	<button class="use_item">Items</button>
+	<button class="item_list">Items</button>
 	<button class="flee_battle">Run</button>
 	<p class="comment">(Main Boss)</p>
 </div>
@@ -123,6 +124,14 @@
 <div id="itemShop" class="container">
 	<p class="comment">(Item Shop)</p>
 </div>
+
+<!-- div that will be used for displaying your current items -->
+<div id="items" class="container">
+	<p class="comment">(Your current items)</p>
+	<button class="use_item">Use Item</button>
+	<button class="resume_battle">Resume Battle</button>
+</div>
+
 
 <!-- If user selects exit game, allows you to restart -->
 <div id="exit" class="container">

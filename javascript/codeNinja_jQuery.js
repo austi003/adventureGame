@@ -1,8 +1,12 @@
+// This file is used for my jQuery calls during the game. Visual elements will be controlled by codeNinja.html and codeNinja.css. 
+// All of the objects will be built out in CodeNinja_objects.js. jQuery calls will be built out in codeNinja_jQuery.js. 
+// All other JavaScript functions will be built out in codeNinja_action.js
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $(document).ready(function(){
 	// hides all DIVs with the CLASS container
 	// and displays the one with the ID 'home' only
-	$(".container").css("display","none");
-	$("#header").css("display", "none");
+	change_div();
 	$("#home").css("display","block");
 	
 	// makes the navigation work after all containers have been hidden 
@@ -64,12 +68,11 @@ $(document).ready(function () {
 // when you click the next_opener button, takes you from opener <div> to scenario 1 <div>
 $(document).ready(function (){
   $("#next_opener").click(function() {
-  		$(".container").css("display","none");
+  		change_div();
 		$("#scenario_1").slideDown("slow");	
-		$("#header").css("display","block");
 		$("#resume_game").css("display", "none");
 		scenario_1_story.innerHTML = scenario[0].storyLine;
-		$(".attack, .use_item, .flee_battle").css("display","none");
+		$(".attack, .item_list, .flee_battle").css("display","none");
 	});
 }); 
 
@@ -77,7 +80,7 @@ $(document).ready(function (){
 $(document).ready(function (){
 	$(".fight").click(function() {
 		$(".fight, .avoid").css("display", "none");
-  		$(".attack, .use_item, .flee_battle").css("display","inline");
+  		$(".attack, .item_list, .flee_battle").css("display","inline");
 	});
 });   
 
