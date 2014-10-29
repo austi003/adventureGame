@@ -9,4 +9,10 @@ text based RPG game that will make use of Functions, Objects, While loops, For l
 As I progress through the project I'm graying out large chunks of my code with comments - /* */ so that I can quickly test 
 just the part I'm working on. 
 
-If you decide to pull my code to run it, just look through and remmeber to remove any comments
+If you decide to pull my code to run it, just look through and remember to remove any comments
+
+
+FILE STRUCTURE:
+codeNinja_action.js   -  This file will have any functions created in JavaScript that controls behavior 
+codeNinja_objects.js  -  This file will create all of the objects used in my game
+codeNinja_jQuery.js   -  This file will hold all of my jQuery code
